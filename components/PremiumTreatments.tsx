@@ -19,7 +19,7 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
       description: 'Complete upper body rejuvenation',
       features: ['Face, neck & chest treatment', 'Premium aftercare kit included', 'Clinisept + Spectricept products', 'Tightens and lifts', 'All skin types'],
       price: '£450',
-      aftercareValue: '£65',
+      aftercareValue: '65',
       gradient: 'from-primary-500 to-primary-600',
       popular: true
     },
