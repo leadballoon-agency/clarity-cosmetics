@@ -18,7 +18,7 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
       options: [
         { value: 'wrinkles', label: 'Fine lines & wrinkles', icon: '🔍' },
         { value: 'scars', label: 'Acne or surgical scars', icon: '✨' },
-        { value: 'texture', label: 'Uneven skin texture', icon: '🌟' },
+        { value: 'sagging', label: 'Skin sagging & laxity', icon: '💪' },
         { value: 'spots', label: 'Age spots & sun damage', icon: '☀️' }
       ]
     },
@@ -65,29 +65,35 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
 
   const getRecommendation = (assessmentAnswers: any = answers) => {
     // Recommend based on severity and concerns
-    if (assessmentAnswers[1] === 'wrinkles' && assessmentAnswers[3] === '50+') {
+    if (assessmentAnswers[1] === 'sagging') {
       return {
-        treatment: 'Face & Neck Package',
-        price: 'POC',
-        description: 'Most popular - comprehensive rejuvenation for face and neck with visible tightening and lifting results'
+        treatment: 'Face, Neck & Décolleté',
+        price: '£450',
+        description: 'Most popular - comprehensive treatment targeting skin laxity, jowls, and loss of definition with visible tightening and lifting results. Includes premium Clinisept + Spectricept aftercare kit (£65 value).'
       }
-    } else if (assessmentAnswers[1] === 'scars' || assessmentAnswers[1] === 'texture') {
+    } else if (assessmentAnswers[1] === 'wrinkles' && assessmentAnswers[3] === '50+') {
+      return {
+        treatment: 'Face, Neck & Décolleté',
+        price: '£450',
+        description: 'Comprehensive rejuvenation for mature skin targeting wrinkles, fine lines, and age-related concerns across face, neck and chest. Includes premium aftercare kit (£65 value).'
+      }
+    } else if (assessmentAnswers[1] === 'scars') {
       return {
         treatment: 'Morpheus8 Face',
         price: 'POC',
-        description: 'Full face treatment perfect for addressing acne scars, uneven texture, and skin laxity'
+        description: 'Full face treatment perfect for addressing acne scars, improving skin texture, and reducing scar visibility with RF microneedling technology'
       }
     } else if (assessmentAnswers[1] === 'spots') {
       return {
         treatment: 'Morpheus8 Face',
         price: 'POC',
-        description: 'Targeted facial treatment to improve skin tone, texture, and age-related concerns'
+        description: 'Targeted facial treatment to improve skin tone, reduce age spots and sun damage, while enhancing overall skin quality'
       }
     } else {
       return {
-        treatment: 'Face & Neck Package',
-        price: 'POC',
-        description: 'Comprehensive treatment for overall skin tightening and rejuvenation'
+        treatment: 'Face, Neck & Décolleté',
+        price: '£450',
+        description: 'Comprehensive treatment for overall skin tightening, rejuvenation and wrinkle reduction. Includes premium Clinisept + Spectricept aftercare kit (£65 value).'
       }
     }
   }
