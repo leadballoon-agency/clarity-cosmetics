@@ -42,7 +42,7 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
 
           if (!widget) {
             // Try finding any new divs that might be the chat widget
-            const chatWidgets = document.querySelectorAll('div[class*="chat"], div[id*="chat"], div[class*="widget"]')
+            const chatWidgets = Array.from(document.querySelectorAll('div[class*="chat"], div[id*="chat"], div[class*="widget"]'))
             for (const el of chatWidgets) {
               const htmlEl = el as HTMLElement
               if (htmlEl.style.position === 'fixed' || htmlEl.style.position === 'absolute') {
