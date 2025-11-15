@@ -261,6 +261,14 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
+        {/* GHL Voice AI Widget - Testing global load */}
+        <script
+          type="text/javascript"
+          src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id="69184b46d1e01c2b9cc1fb70"
+          async
+        />
       </head>
       <body className={`${openSans.variable} ${montserrat.variable} font-sans`}>{children}</body>
     </html>

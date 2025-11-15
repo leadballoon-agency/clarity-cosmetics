@@ -18,54 +18,12 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
       document.body.style.overflow = 'hidden'
 
       if (isModelDay) {
-        // Load GHL Voice AI widget for Model Day
-        const script = document.createElement('script')
-        script.type = 'text/javascript'
-        script.src = 'https://widgets.leadconnectorhq.com/loader.js'
-        script.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js')
-        script.setAttribute('data-widget-id', '69184b46d1e01c2b9cc1fb70')
-
-        script.onload = () => {
-          console.log('✓ GHL widget script loaded successfully')
-          console.log('Script element:', script)
-          console.log('Waiting for widget to initialize...')
-        }
-
-        script.onerror = (error) => {
-          console.error('✗ Failed to load GHL widget script:', error)
-        }
-
-        document.body.appendChild(script)
-        console.log('GHL Voice AI widget script added to page:', {
-          src: script.src,
-          widgetId: script.getAttribute('data-widget-id'),
-          resourcesUrl: script.getAttribute('data-resources-url')
-        })
-
-        // TODO: Temporarily disabled iframe detection to test if widget loads naturally
-        // If floating widget appears and works, we'll implement a different approach to embed it in modal
-
-        /*
-        // Helper function to search in shadow DOMs and log what we find
-        const findIframeInShadowDOM = (): HTMLIFrameElement | null => {
-          // ... detection code ...
-        }
-
-        // Polling code...
-        */
+        // GHL Voice AI widget is loaded globally in layout.tsx
+        // Widget will appear as floating button on page load
+        console.log('Model Day modal opened - GHL widget should be available as floating button')
 
         return () => {
-          try {
-            document.body.removeChild(script)
-
-            // Remove the widget from DOM
-            const widget = document.querySelector('[data-widget-id="69184b46d1e01c2b9cc1fb70"]')
-            if (widget) {
-              widget.remove()
-            }
-          } catch (e) {
-            // Already cleaned up
-          }
+          // No cleanup needed since widget is loaded globally
         }
       } else {
         // Load GHL calendar for regular bookings
