@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import VideoModal from './VideoModal'
+import { useState, useRef } from 'react'
+import VideoModal, { VideoModalRef } from './VideoModal'
 
 interface PremiumHeroProps {
   onBookingClick?: () => void
@@ -9,7 +9,14 @@ interface PremiumHeroProps {
 
 export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
   const [isVideoOpen, setIsVideoOpen] = useState(false)
+  const videoModalRef = useRef<VideoModalRef>(null)
   const videoUrl = 'https://storage.googleapis.com/msgsndr/8PNaWjnYgGoS1sfgwICL/media/691753a47635bd1a65fbe307.mp4'
+
+  const handlePlayClick = () => {
+    setIsVideoOpen(true)
+    // Call play synchronously with the click event (iOS requirement)
+    videoModalRef.current?.play()
+  }
   return (
     <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
       {/* Gradient Background */}
@@ -89,7 +96,7 @@ export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
           <div className="relative mt-10 sm:mt-12 lg:hidden">
             <div className="relative mx-auto max-w-[320px]">
               <button
-                onClick={() => setIsVideoOpen(true)}
+                onClick={handlePlayClick}
                 className="relative w-full group cursor-pointer"
                 aria-label="Play video about Morpheus8 treatments"
               >
@@ -121,7 +128,7 @@ export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
               <div className="relative flex items-center justify-center h-full w-full">
                 {/* Main Image with Video */}
                 <button
-                  onClick={() => setIsVideoOpen(true)}
+                  onClick={handlePlayClick}
                   className="relative w-full max-w-md group cursor-pointer"
                   aria-label="Play video about Morpheus8 treatments"
                 >
@@ -175,6 +182,7 @@ export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
 
       {/* Video Modal */}
       <VideoModal
+        ref={videoModalRef}
         isOpen={isVideoOpen}
         onClose={() => setIsVideoOpen(false)}
         videoUrl={videoUrl}

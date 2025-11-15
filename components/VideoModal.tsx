@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useImperativeHandle, forwardRef } from 'react'
 
 interface VideoModalProps {
   isOpen: boolean
@@ -8,18 +8,27 @@ interface VideoModalProps {
   videoUrl: string
 }
 
-export default function VideoModal({ isOpen, onClose, videoUrl }: VideoModalProps) {
+export interface VideoModalRef {
+  play: () => void
+}
+
+const VideoModal = forwardRef<VideoModalRef, VideoModalProps>(({ isOpen, onClose, videoUrl }, ref) => {
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden'
-      // Play video when modal opens - this maintains user gesture context
+  // Expose play function to parent component
+  useImperativeHandle(ref, () => ({
+    play: () => {
       if (videoRef.current) {
         videoRef.current.play().catch(err => {
           console.error('Play failed:', err)
         })
       }
+    }
+  }))
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'unset'
       // Pause and reset when modal closes
@@ -91,4 +100,8 @@ export default function VideoModal({ isOpen, onClose, videoUrl }: VideoModalProp
       </div>
     </div>
   )
-}
+})
+
+VideoModal.displayName = 'VideoModal'
+
+export default VideoModal
