@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Open_Sans, Montserrat } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 
 const openSans = Open_Sans({
@@ -261,16 +262,35 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
-        {/* GHL Voice AI Widget - Testing global load */}
-        <script
-          type="text/javascript"
-          src="https://widgets.leadconnectorhq.com/loader.js"
-          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-          data-widget-id="69184b46d1e01c2b9cc1fb70"
-          async
-        />
       </head>
-      <body className={`${openSans.variable} ${montserrat.variable} font-sans`}>{children}</body>
+      <body className={`${openSans.variable} ${montserrat.variable} font-sans`}>
+        {children}
+        {/* GHL Voice AI Widget - Injected directly with attributes */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                console.log('Loading GHL widget...');
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = 'https://widgets.leadconnectorhq.com/loader.js';
+                script.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+                script.setAttribute('data-widget-id', '69184b46d1e01c2b9cc1fb70');
+                script.async = true;
+                script.onload = function() {
+                  console.log('✓ GHL widget script loaded');
+                  console.log('Widget ID:', script.getAttribute('data-widget-id'));
+                };
+                script.onerror = function() {
+                  console.error('✗ Failed to load GHL widget script');
+                };
+                document.body.appendChild(script);
+                console.log('GHL widget script tag added to body');
+              })();
+            `
+          }}
+        />
+      </body>
     </html>
   )
 }
