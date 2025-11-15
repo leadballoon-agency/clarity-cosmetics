@@ -14,6 +14,12 @@ export default function VideoModal({ isOpen, onClose, videoUrl }: VideoModalProp
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
+      // Play video when modal opens - this maintains user gesture context
+      if (videoRef.current) {
+        videoRef.current.play().catch(err => {
+          console.error('Play failed:', err)
+        })
+      }
     } else {
       document.body.style.overflow = 'unset'
       // Pause and reset when modal closes
@@ -28,13 +34,18 @@ export default function VideoModal({ isOpen, onClose, videoUrl }: VideoModalProp
     }
   }, [isOpen])
 
-  if (!isOpen) return null
+  // Don't use conditional rendering - always render but hide with CSS
+  // This ensures video element exists when user clicks play button
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${
+        isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      }`}
+    >
       {/* Backdrop with glassmorphism */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/80 backdrop-blur-md animate-fade-in"
+        className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/80 backdrop-blur-md"
         onClick={onClose}
       />
 
@@ -61,7 +72,6 @@ export default function VideoModal({ isOpen, onClose, videoUrl }: VideoModalProp
             ref={videoRef}
             className="w-full h-auto max-h-[80vh] object-contain"
             controls
-            autoPlay
             playsInline
             webkit-playsinline="true"
             x-webkit-airplay="allow"
