@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface BookingModalProps {
   isOpen: boolean
@@ -10,45 +10,71 @@ interface BookingModalProps {
 }
 
 export default function BookingModal({ isOpen, onClose, isModelDay = false }: BookingModalProps) {
-  const [chatLoaded, setChatLoaded] = useState(false)
+  const [widgetLoaded, setWidgetLoaded] = useState(false)
+  const widgetContainerRef = useRef<HTMLDivElement>(null)
+  const observerRef = useRef<MutationObserver | null>(null)
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
 
       if (isModelDay) {
-        // Load AI Voice Agent for Model Day
+        // Load GHL Voice AI widget for Model Day
         const script = document.createElement('script')
         script.type = 'text/javascript'
         script.src = 'https://widgets.leadconnectorhq.com/loader.js'
         script.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js')
         script.setAttribute('data-widget-id', '69184b46d1e01c2b9cc1fb70')
 
-        script.onload = () => {
-          setChatLoaded(true)
-          // Give the widget a moment to initialize, then try to open it
-          setTimeout(() => {
-            // Try to open the chat widget automatically
-            const chatButton = document.querySelector('[data-widget-id="69184b46d1e01c2b9cc1fb70"]') as HTMLElement
-            if (chatButton) {
-              chatButton.click()
-            }
-          }, 1000)
-        }
-
         document.body.appendChild(script)
+
+        // Watch for widget to appear in DOM and relocate it to our container
+        observerRef.current = new MutationObserver(() => {
+          // Look for the widget element
+          const widget = document.querySelector('[data-widget-id="69184b46d1e01c2b9cc1fb70"]') as HTMLElement
+
+          if (widget && widgetContainerRef.current && !widgetLoaded) {
+            setWidgetLoaded(true)
+
+            // Move widget into our container
+            widgetContainerRef.current.appendChild(widget)
+
+            // Override default styles to make it fit our modal
+            widget.style.position = 'relative'
+            widget.style.top = 'auto'
+            widget.style.right = 'auto'
+            widget.style.bottom = 'auto'
+            widget.style.left = 'auto'
+            widget.style.width = '100%'
+            widget.style.height = '100%'
+            widget.style.maxWidth = '100%'
+            widget.style.maxHeight = '100%'
+            widget.style.transform = 'none'
+            widget.style.margin = '0'
+
+            observerRef.current?.disconnect()
+          }
+        })
+
+        // Start observing
+        observerRef.current.observe(document.body, {
+          childList: true,
+          subtree: true
+        })
 
         return () => {
           try {
+            observerRef.current?.disconnect()
             document.body.removeChild(script)
-            setChatLoaded(false)
-            // Remove the chat widget from DOM
-            const chatWidget = document.querySelector('[data-widget-id="69184b46d1e01c2b9cc1fb70"]')
-            if (chatWidget) {
-              chatWidget.remove()
+            setWidgetLoaded(false)
+
+            // Remove the widget from DOM
+            const widget = document.querySelector('[data-widget-id="69184b46d1e01c2b9cc1fb70"]')
+            if (widget) {
+              widget.remove()
             }
           } catch (e) {
-            // Script already removed
+            // Already cleaned up
           }
         }
       } else {
@@ -75,7 +101,7 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
     return () => {
       document.body.style.overflow = 'unset'
     }
-  }, [isOpen, isModelDay])
+  }, [isOpen, isModelDay, widgetLoaded])
 
   if (!isOpen) return null
 
@@ -139,40 +165,35 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
             <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 min-h-full">
               {isModelDay ? (
                 /* AI Voice Agent Widget Container for Model Day */
-                <div className="w-full min-h-[600px] flex flex-col items-center justify-center text-center px-4">
-                  <div className="inline-flex items-center justify-center w-20 h-20 bg-primary-100 rounded-full mb-6">
-                    <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                  </div>
-
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-3">
-                    Chat with Kerry
-                  </h3>
-
-                  <p className="text-neutral-600 mb-2 max-w-md">
-                    {chatLoaded
-                      ? "Our AI assistant Kerry will appear in the bottom corner of your screen. Click the chat bubble to start your Model Day qualification."
-                      : "Loading Kerry, our AI assistant..."}
-                  </p>
-
-                  {chatLoaded && (
-                    <div className="mt-6 flex items-center gap-2 text-sm text-primary-600">
-                      <div className="w-2 h-2 bg-primary-600 rounded-full animate-pulse"></div>
-                      <span>Look for the chat bubble in the bottom corner →</span>
-                    </div>
-                  )}
-
-                  {!chatLoaded && (
-                    <div className="mt-4">
-                      <div className="inline-flex items-center space-x-2 text-primary-600">
-                        <svg className="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                        </svg>
-                        <span className="text-sm">Initializing chat...</span>
+                <div className="w-full h-full min-h-[600px] relative">
+                  {/* Widget Container - Will be filled by relocated widget */}
+                  <div
+                    ref={widgetContainerRef}
+                    className="w-full h-full min-h-[600px]"
+                  >
+                    {/* Loading state - shown until widget is relocated */}
+                    {!widgetLoaded && (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                        <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
+                          <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                          </svg>
+                        </div>
+                        <h3 className="text-xl font-bold text-neutral-900 mb-2">
+                          Loading Voice Assistant...
+                        </h3>
+                        <p className="text-sm text-neutral-600 max-w-md mb-4">
+                          Kerry, our AI assistant, is getting ready to help you qualify for a Model Day
+                        </p>
+                        <div className="inline-flex items-center space-x-2 text-primary-600">
+                          <svg className="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                          </svg>
+                          <span className="text-sm">Initializing...</span>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               ) : (
                 /* Regular Booking Calendar */
