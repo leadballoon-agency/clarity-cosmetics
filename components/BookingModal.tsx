@@ -27,121 +27,23 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
 
         document.body.appendChild(script)
 
+        console.log('GHL Voice AI widget script loaded - widget should appear as floating button')
+
+        // TODO: Temporarily disabled iframe detection to test if widget loads naturally
+        // If floating widget appears and works, we'll implement a different approach to embed it in modal
+
+        /*
         // Helper function to search in shadow DOMs and log what we find
         const findIframeInShadowDOM = (): HTMLIFrameElement | null => {
-          const allElements = Array.from(document.querySelectorAll('*'))
-
-          // Debug: Log elements that might be the widget
-          const widgetElements = allElements.filter(el =>
-            el.getAttribute('data-widget-id') === '69184b46d1e01c2b9cc1fb70' ||
-            el.tagName.toLowerCase().includes('ghl') ||
-            el.tagName.toLowerCase().includes('chat') ||
-            el.className?.toString().includes('widget') ||
-            el.shadowRoot
-          )
-
-          if (widgetElements.length > 0) {
-            console.log('Found potential widget elements:', widgetElements.map(el => ({
-              tag: el.tagName,
-              id: el.id,
-              class: el.className,
-              hasShadowRoot: !!el.shadowRoot,
-              children: el.shadowRoot?.children.length || el.children.length
-            })))
-          }
-
-          for (const el of allElements) {
-            // Check regular DOM for any iframe
-            if (el.tagName === 'IFRAME') {
-              const iframe = el as HTMLIFrameElement
-              console.log('Found iframe in DOM:', iframe.src, 'id:', iframe.id, 'class:', iframe.className)
-              if (iframe.src.includes('leadconnectorhq') || iframe.src.includes('msgsndr') || iframe.src.includes('chat')) {
-                console.log('✓ This is the GHL iframe!')
-                return iframe
-              }
-            }
-
-            // Check shadow DOM
-            if (el.shadowRoot) {
-              const iframes = el.shadowRoot.querySelectorAll('iframe')
-              if (iframes.length > 0) {
-                console.log(`Found ${iframes.length} iframe(s) in shadow DOM of ${el.tagName}`)
-                Array.from(iframes).forEach((iframe: HTMLIFrameElement) => {
-                  console.log('  - iframe src:', iframe.src)
-                  if (iframe.src.includes('leadconnectorhq') || iframe.src.includes('msgsndr') || iframe.src.includes('chat')) {
-                    console.log('  ✓ This is the GHL iframe!')
-                  }
-                })
-              }
-
-              const iframe = Array.from(iframes).find((iframe: HTMLIFrameElement) =>
-                iframe.src.includes('leadconnectorhq') ||
-                iframe.src.includes('msgsndr') ||
-                iframe.src.includes('chat')
-              ) as HTMLIFrameElement | undefined
-
-              if (iframe) {
-                return iframe
-              }
-            }
-          }
-          return null
+          // ... detection code ...
         }
 
-        // Use polling instead of MutationObserver (more reliable for Shadow DOM)
-        let attempts = 0
-        const maxAttempts = 50 // Try for 10 seconds (50 * 200ms)
-        const pollInterval = setInterval(() => {
-          attempts++
-          console.log(`Searching for widget iframe... attempt ${attempts}/${maxAttempts}`)
-
-          if (widgetLoaded) {
-            clearInterval(pollInterval)
-            return
-          }
-
-          const originalIframe = findIframeInShadowDOM()
-
-          if (originalIframe && widgetContainerRef.current) {
-            console.log('Found GHL iframe, cloning to modal:', originalIframe.src)
-            clearInterval(pollInterval)
-            setWidgetLoaded(true)
-
-            // Create a new iframe in our modal with the same src
-            const newIframe = document.createElement('iframe')
-            newIframe.src = originalIframe.src
-            newIframe.style.width = '100%'
-            newIframe.style.height = '100%'
-            newIframe.style.minHeight = '600px'
-            newIframe.style.border = 'none'
-            newIframe.style.borderRadius = '8px'
-            newIframe.allow = 'microphone'
-            newIframe.title = 'Model Day Voice Chat'
-
-            // Add to our container
-            widgetContainerRef.current.appendChild(newIframe)
-
-            // Hide the original floating widget
-            let widgetRoot = originalIframe.closest('div[style*="position"]') as HTMLElement
-            if (!widgetRoot) {
-              // Might be in shadow DOM
-              const host = Array.from(document.querySelectorAll('*')).find(el => el.shadowRoot?.contains(originalIframe))
-              if (host) widgetRoot = host as HTMLElement
-            }
-            if (widgetRoot) {
-              widgetRoot.style.display = 'none'
-            }
-          } else if (attempts >= maxAttempts) {
-            clearInterval(pollInterval)
-            console.log('Widget loading timeout - iframe not found after', maxAttempts, 'attempts')
-          }
-        }, 200) // Check every 200ms
+        // Polling code...
+        */
 
         return () => {
           try {
-            clearInterval(pollInterval)
             document.body.removeChild(script)
-            setWidgetLoaded(false)
 
             // Remove the widget from DOM
             const widget = document.querySelector('[data-widget-id="69184b46d1e01c2b9cc1fb70"]')
@@ -246,28 +148,26 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
                     ref={widgetContainerRef}
                     className="w-full h-full min-h-[600px]"
                   >
-                    {/* Loading state - shown until widget is relocated */}
-                    {!widgetLoaded && (
-                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-                        <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
-                          <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                          </svg>
-                        </div>
-                        <h3 className="text-xl font-bold text-neutral-900 mb-2">
-                          Loading Voice Assistant...
-                        </h3>
-                        <p className="text-sm text-neutral-600 max-w-md mb-4">
-                          Kerry, our AI assistant, is getting ready to help you qualify for a Model Day
-                        </p>
-                        <div className="inline-flex items-center space-x-2 text-primary-600">
-                          <svg className="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                          </svg>
-                          <span className="text-sm">Initializing...</span>
-                        </div>
+                    {/* Instruction for floating widget */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                      <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
+                        <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                        </svg>
                       </div>
-                    )}
+                      <h3 className="text-xl font-bold text-neutral-900 mb-2">
+                        Look for Kerry's Voice Assistant
+                      </h3>
+                      <p className="text-sm text-neutral-600 max-w-md mb-4">
+                        Our AI voice assistant will appear as a floating chat button on your screen. Click it to start your Model Day qualification conversation with Kerry.
+                      </p>
+                      <div className="inline-flex items-center space-x-2 text-primary-600">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-sm">Loading chat widget...</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ) : (
