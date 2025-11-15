@@ -1,9 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import BeforeAfterSlider from './BeforeAfterSlider'
 
 interface ResultsGalleryProps {
-  onBookingClick?: () => void
+  onBookingClick?: (isModelDay?: boolean) => void
 }
 
 export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) {
@@ -11,49 +12,76 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
 
   const results = [
     {
-      title: 'Forehead Lines & Wrinkles',
-      description: 'Dramatic reduction in horizontal forehead wrinkles and expression lines',
-      treatmentArea: 'Upper Face'
+      title: 'Nasolabial Folds & Skin Texture',
+      description: 'Reduced nasolabial folds with improved skin texture and tone',
+      treatmentArea: 'Mid Face',
+      image: '/images/inmode-ba/forehead-after.jpg',
+      beforeImage: '/images/inmode-ba/forehead-before.jpg',
+      hasRealImage: true
     },
     {
       title: 'Acne Scar Reduction',
       description: 'Significant improvement in acne scarring with smoother, more even skin texture',
-      treatmentArea: 'Full Face'
+      treatmentArea: 'Full Face',
+      image: '/images/inmode-ba/acne-after.png',
+      beforeImage: '/images/inmode-ba/acne-before.png',
+      hasRealImage: true
     },
     {
       title: 'Jawline & Jowl Tightening',
       description: 'Enhanced definition and tightening of lower face for a more youthful contour',
-      treatmentArea: 'Lower Face'
+      treatmentArea: 'Lower Face',
+      image: '/images/inmode-ba/jawline-after.png',
+      beforeImage: '/images/inmode-ba/jawline-before.png',
+      hasRealImage: true
     },
     {
       title: 'Neck Skin Tightening',
       description: 'Firmer, smoother neck with reduced crepiness and improved skin quality',
-      treatmentArea: 'Neck'
+      treatmentArea: 'Neck',
+      image: '/images/inmode-ba/neck-after.png',
+      beforeImage: '/images/inmode-ba/neck-before.png',
+      hasRealImage: true
     },
     {
       title: 'Smile Lines Softening',
       description: 'Reduced depth of nasolabial folds and improved mid-face skin quality',
-      treatmentArea: 'Mid Face'
+      treatmentArea: 'Mid Face',
+      image: '/images/inmode-ba/smile-after.jpg',
+      beforeImage: '/images/inmode-ba/smile-before.jpg',
+      hasRealImage: true
     },
     {
       title: 'Overall Skin Texture',
       description: 'Refined pores, smoother texture, and improved skin tone across entire face',
-      treatmentArea: 'Full Face'
+      treatmentArea: 'Full Face',
+      image: '/images/inmode-ba/texture-after.png',
+      beforeImage: '/images/inmode-ba/texture-before.png',
+      hasRealImage: true
     },
     {
-      title: 'Under Eye Rejuvenation',
-      description: 'Tightened lower lid skin and reduced crepey texture around delicate eye area',
-      treatmentArea: 'Eye Area'
+      title: 'Stretch Mark Reduction',
+      description: 'Improving appearance of stretch marks with smoother, more even skin texture',
+      treatmentArea: 'Body',
+      image: null,
+      hasRealImage: false,
+      isModelDay: true
     },
     {
       title: 'Full Face Transformation',
       description: 'Complete facial rejuvenation with overall tightening, lifting, and skin quality improvement',
-      treatmentArea: 'Full Face & Neck'
+      treatmentArea: 'Full Face & Neck',
+      image: null,
+      hasRealImage: false,
+      isModelDay: true
     },
     {
       title: 'Body Contouring - Abdomen',
       description: 'Skin tightening and texture improvement on abdomen, reducing loose skin',
-      treatmentArea: 'Body'
+      treatmentArea: 'Body',
+      image: null,
+      hasRealImage: false,
+      isModelDay: true
     }
   ]
 
@@ -77,27 +105,66 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
             <div
               key={index}
               className="group relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-premium sm:hover:shadow-premium-lg transition-all duration-300 cursor-pointer"
-              onClick={() => setSelectedImage(index)}
+              onClick={() => result.isModelDay ? onBookingClick?.(true) : setSelectedImage(index)}
             >
               {/* Treatment Area Badge */}
-              <div className="absolute top-3 sm:top-4 left-3 sm:left-4 z-10 bg-primary-500/90 backdrop-blur text-white rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5">
-                <span className="text-xs sm:text-sm font-medium">{result.treatmentArea}</span>
+              <div className={`absolute top-3 sm:top-4 left-3 sm:left-4 z-10 ${result.isModelDay ? 'bg-white text-primary-600' : 'bg-primary-500/90 text-white'} backdrop-blur rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5`}>
+                <span className="text-xs sm:text-sm font-medium">{result.isModelDay ? 'Model Day' : result.treatmentArea}</span>
               </div>
+
+              {/* Before Badge - Only on real images */}
+              {result.hasRealImage && !result.isModelDay && (
+                <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-10 bg-gradient-to-r from-primary-600 to-primary-700 text-white backdrop-blur rounded-full px-3 sm:px-4 py-1 sm:py-1.5 shadow-lg flex items-center gap-1.5">
+                  <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                  <span className="text-xs sm:text-sm font-semibold">Tap to Reveal</span>
+                </div>
+              )}
 
               {/* Image Container */}
               <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary-50 to-primary-100">
-                {/* Coming Soon Placeholder */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                  <div className="w-24 h-24 mb-4 rounded-full border-4 border-primary-500 border-dashed flex items-center justify-center opacity-30">
-                    <svg className="w-12 h-12 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+                {result.hasRealImage && result.beforeImage ? (
+                  <img
+                    src={result.beforeImage}
+                    alt={`${result.title} - Before`}
+                    className="w-full h-full object-cover"
+                  />
+                ) : result.isModelDay ? (
+                  /* Model Day Card */
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600 flex flex-col items-center justify-center p-6 text-white">
+                    <div className="w-20 h-20 mb-4 rounded-full bg-white/20 backdrop-blur flex items-center justify-center">
+                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-2xl font-bold mb-2">Model Day Available</p>
+                      <p className="text-sm text-white/90 mb-4">Get discounted treatment in exchange for B&A photos</p>
+                      <div className="inline-flex items-center bg-white text-primary-600 px-4 py-2 rounded-full font-medium text-sm">
+                        <span>Book Your Slot</span>
+                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-primary-600 mb-2">COMING SOON</p>
-                    <p className="text-sm text-primary-500">Before & After Results</p>
+                ) : (
+                  /* Coming Soon Placeholder */
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
+                    <div className="w-24 h-24 mb-4 rounded-full border-4 border-primary-500 border-dashed flex items-center justify-center opacity-30">
+                      <svg className="w-12 h-12 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-2xl font-bold text-primary-600 mb-2">COMING SOON</p>
+                      <p className="text-sm text-primary-500">Before & After Results</p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Content */}
@@ -116,12 +183,19 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
           ))}
         </div>
 
+        {/* ASA Compliance Disclaimer */}
+        <div className="mt-6 text-center">
+          <p className="text-xs sm:text-sm text-neutral-500 italic">
+            Example results courtesy of InMode. Individual results may vary. Not representative of Clarity Cosmetics patient outcomes.
+          </p>
+        </div>
+
         {/* Treatment Room Showcase - Mobile Optimized */}
         <div className="mt-8 sm:mt-12">
           <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-premium">
             <img
               src="/images/treatment.jpg"
-              alt="Claire's Beautiful Bespoke Treatment Room at Clarity Cosmetics"
+              alt="Claire Emmerson's Beautiful Bespoke Treatment Room at Clarity Cosmetics"
               className="w-full"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 sm:from-black/60 via-black/40 sm:via-transparent to-transparent flex items-center">
@@ -159,27 +233,38 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
         </div>
 
         {/* Lightbox Modal - Mobile Optimized */}
-        {selectedImage !== null && (
+        {selectedImage !== null && results[selectedImage].hasRealImage && (
           <div
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-3 sm:p-4"
+            className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-3 sm:p-4"
             onClick={() => setSelectedImage(null)}
           >
-            <div className="relative max-w-4xl w-full aspect-square bg-gradient-to-br from-primary-50 to-primary-100 rounded-lg">
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
-                <div className="w-32 h-32 mb-6 rounded-full border-4 border-primary-500 border-dashed flex items-center justify-center opacity-30">
-                  <svg className="w-16 h-16 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div className="text-center">
-                  <p className="text-4xl font-bold text-primary-600 mb-3">COMING SOON</p>
-                  <p className="text-xl text-primary-500 mb-2">{results[selectedImage].title}</p>
-                  <p className="text-sm text-primary-400">Before & After Results</p>
-                </div>
+            <div
+              className="relative max-w-5xl w-full h-full max-h-[90vh] flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header with title */}
+              <div className="mb-4 text-center">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
+                  {results[selectedImage].title}
+                </h3>
+                <p className="text-sm sm:text-base text-white/80">
+                  {results[selectedImage].description}
+                </p>
               </div>
+
+              {/* Slider Container */}
+              <div className="flex-1 min-h-0">
+                <BeforeAfterSlider
+                  beforeImage={results[selectedImage].beforeImage || ''}
+                  afterImage={results[selectedImage].image || ''}
+                  alt={results[selectedImage].title}
+                />
+              </div>
+
+              {/* Close button */}
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-white/90 backdrop-blur rounded-full p-3 sm:p-4 hover:bg-white transition w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center"
+                className="absolute -top-2 -right-2 sm:top-0 sm:right-0 bg-white/90 backdrop-blur rounded-full p-3 sm:p-4 hover:bg-white transition w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center shadow-xl"
                 aria-label="Close"
               >
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

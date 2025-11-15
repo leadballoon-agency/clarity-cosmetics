@@ -31,16 +31,16 @@ export default function CTASection({ onBookingClick }: CTASectionProps) {
           <div className="bg-white/10 backdrop-blur rounded-xl sm:rounded-2xl p-5 sm:p-7">
             <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">📞</div>
             <h3 className="font-semibold text-base sm:text-lg mb-1 sm:mb-2">Call Claire</h3>
-            <a href="tel:07929802094" className="text-white/90 hover:text-white text-sm sm:text-base inline-block py-1.5">
-              07929 802094
+            <a href="tel:+447414154007" className="text-white/90 hover:text-white text-sm sm:text-base inline-block py-1.5">
+              07414 154007
             </a>
           </div>
 
           <div className="bg-white/10 backdrop-blur rounded-xl sm:rounded-2xl p-5 sm:p-7">
-            <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">📧</div>
-            <h3 className="font-semibold text-base sm:text-lg mb-1 sm:mb-2">Email</h3>
-            <a href="mailto:info@claritycosmetics.co.uk" className="text-white/90 hover:text-white text-xs sm:text-sm break-all inline-block py-1.5">
-              info@claritycosmetics.co.uk
+            <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">💬</div>
+            <h3 className="font-semibold text-base sm:text-lg mb-1 sm:mb-2">WhatsApp</h3>
+            <a href="https://wa.me/447414154007" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white text-sm sm:text-base inline-block py-1.5">
+              Message Us
             </a>
           </div>
 

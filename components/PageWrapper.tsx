@@ -12,39 +12,48 @@ import FAQ from '@/components/FAQ'
 import CTASection from '@/components/CTASection'
 import Footer from '@/components/Footer'
 import BookingModal from '@/components/BookingModal'
+import ScrollToTop from '@/components/ScrollToTop'
 
 export default function PageWrapper() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
+  const [isModelDayBooking, setIsModelDayBooking] = useState(false)
   const [assessmentData, setAssessmentData] = useState<any>(null)
+
+  const handleBookingClick = (isModelDay = false) => {
+    setIsModelDayBooking(isModelDay)
+    setIsBookingModalOpen(true)
+  }
 
   return (
     <>
-      <Navigation onBookingClick={() => setIsBookingModalOpen(true)} />
+      <ScrollToTop />
+      <Navigation onBookingClick={() => handleBookingClick(false)} />
       <main className="overflow-hidden">
-        <PremiumHero onBookingClick={() => setIsBookingModalOpen(true)} />
+        <PremiumHero onBookingClick={() => handleBookingClick(false)} />
         <AssessmentTool
-          onBookingClick={() => setIsBookingModalOpen(true)}
+          onBookingClick={() => handleBookingClick(false)}
           onAssessmentComplete={(data) => setAssessmentData(data)}
         />
-        <AboutSection onBookingClick={() => setIsBookingModalOpen(true)} />
-        <PremiumTreatments onBookingClick={() => setIsBookingModalOpen(true)} />
-        <ResultsGallery onBookingClick={() => setIsBookingModalOpen(true)} />
+        <AboutSection onBookingClick={() => handleBookingClick(false)} />
+        <PremiumTreatments onBookingClick={() => handleBookingClick(false)} />
+        <ResultsGallery onBookingClick={handleBookingClick} />
         <ReviewsSection />
-        <FAQ onBookingClick={() => setIsBookingModalOpen(true)} />
-        <CTASection onBookingClick={() => setIsBookingModalOpen(true)} />
+        <FAQ onBookingClick={() => handleBookingClick(false)} />
+        <CTASection onBookingClick={() => handleBookingClick(false)} />
       </main>
       <Footer />
       
       {/* Booking Modal */}
-      <BookingModal 
+      <BookingModal
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
         assessmentData={assessmentData}
+        isModelDay={isModelDayBooking}
       />
-      
+
       {/* Floating Book Now Button */}
       <button
-        onClick={() => setIsBookingModalOpen(true)}
+        onClick={() => handleBookingClick(false)}
         className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3 rounded-full font-medium shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 flex items-center group"
       >
         <span className="mr-2">Book Now</span>

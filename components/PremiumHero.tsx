@@ -1,8 +1,15 @@
+'use client'
+
+import { useState } from 'react'
+import VideoModal from './VideoModal'
+
 interface PremiumHeroProps {
   onBookingClick?: () => void
 }
 
 export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
+  const [isVideoOpen, setIsVideoOpen] = useState(false)
+  const videoUrl = 'https://storage.googleapis.com/msgsndr/8PNaWjnYgGoS1sfgwICL/media/691753a47635bd1a65fbe307.mp4'
   return (
     <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
       {/* Gradient Background */}
@@ -29,12 +36,12 @@ export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
 
             {/* Main Heading */}
             <h1 className="font-display text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.15] sm:leading-[1.1]">
-              Medical-Grade Skin Rejuvenation
-              <span className="block gradient-text mt-1">From a Midwife Who Understands Women</span>
+              Lift Your Face, Neck & Décolleté
+              <span className="block gradient-text mt-1">Without a Scalpel</span>
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-neutral-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Claire Emmerson combines women's health expertise with advanced Morpheus8 RF microneedling. Evidence-based, compassionate care for face, neck, and body rejuvenation in Bedford.
+              Professional Morpheus8 Treatments | Claire Emmerson, Registered Nurse | Bedford
             </p>
 
             {/* CTA Buttons */}
@@ -81,11 +88,25 @@ export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
           {/* Mobile Image Section - Simple and Clean */}
           <div className="relative mt-10 sm:mt-12 lg:hidden">
             <div className="relative mx-auto max-w-[320px]">
-              <img
-                src="/images/home1.jpg"
-                alt="Morpheus8 RF Microneedling Treatment"
-                className="rounded-2xl shadow-xl w-full"
-              />
+              <button
+                onClick={() => setIsVideoOpen(true)}
+                className="relative w-full group cursor-pointer"
+                aria-label="Play video about Morpheus8 treatments"
+              >
+                <img
+                  src="/images/home1.jpg"
+                  alt="Morpheus8 RF Microneedling Treatment"
+                  className="rounded-2xl shadow-xl w-full"
+                />
+                {/* Play Button Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white transition-all duration-300 group-hover:scale-110 shadow-xl">
+                    <svg className="w-8 h-8 text-primary-600 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                    </svg>
+                  </div>
+                </div>
+              </button>
               <div className="absolute -top-2 -right-2 bg-white rounded-lg shadow-lg p-2">
                 <p className="text-lg font-bold gradient-text">CQC</p>
               </div>
@@ -98,14 +119,26 @@ export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
               <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-sage-50 rounded-3xl"></div>
 
               <div className="relative flex items-center justify-center h-full w-full">
-                {/* Main Image */}
-                <div className="relative w-full max-w-md">
+                {/* Main Image with Video */}
+                <button
+                  onClick={() => setIsVideoOpen(true)}
+                  className="relative w-full max-w-md group cursor-pointer"
+                  aria-label="Play video about Morpheus8 treatments"
+                >
                   <img
                     src="/images/home1.jpg"
                     alt="Morpheus8 RF Microneedling Treatment"
                     className="rounded-2xl shadow-2xl w-full animate-float"
                   />
-                </div>
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white transition-all duration-300 group-hover:scale-110 shadow-xl">
+                      <svg className="w-10 h-10 text-primary-600 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                      </svg>
+                    </div>
+                  </div>
+                </button>
               </div>
 
               {/* Info Card - Desktop Only */}
@@ -139,6 +172,13 @@ export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
           </svg>
         </div>
       </div>
+
+      {/* Video Modal */}
+      <VideoModal
+        isOpen={isVideoOpen}
+        onClose={() => setIsVideoOpen(false)}
+        videoUrl={videoUrl}
+      />
     </section>
   )
 }

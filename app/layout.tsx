@@ -17,7 +17,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL('https://morpheus8bedford.co.uk'),
   title: {
-    default: 'Morpheus8 Bedford | RF Microneedling by Registered Nurse Claire',
+    default: 'Morpheus8 Bedford | RF Microneedling by Registered Nurse Claire Emmerson',
     template: '%s | Morpheus8 Bedford'
   },
   description: 'FDA-cleared Morpheus8 RF microneedling in Bedford. CQC registered, nurse-led clinic specialising in skin tightening, wrinkle reduction & acne scar treatment. Natural results, minimal downtime.',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: 'Morpheus8 Bedford | RF Microneedling by Registered Nurse Claire',
+    title: 'Morpheus8 Bedford | RF Microneedling by Registered Nurse Claire Emmerson',
     description: 'FDA-cleared Morpheus8 RF microneedling in Bedford. CQC registered, nurse-led clinic. Natural results with minimal downtime. Book your free consultation today.',
     url: 'https://morpheus8bedford.co.uk',
     siteName: 'Morpheus8 Bedford - Clarity Cosmetics',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Morpheus8 Bedford | RF Microneedling by Registered Nurse Claire',
+    title: 'Morpheus8 Bedford | RF Microneedling by Registered Nurse Claire Emmerson',
     description: 'FDA-cleared Morpheus8 RF microneedling in Bedford. CQC registered, nurse-led clinic. Natural results with minimal downtime.',
     images: ['/images/home1.jpg'],
   },
@@ -91,8 +91,7 @@ const structuredData = {
       image: 'https://morpheus8bedford.co.uk/images/home1.jpg',
       description: 'CQC registered nurse-led aesthetic clinic in Bedford specialising in Morpheus8 RF microneedling treatments for skin tightening, wrinkle reduction, and acne scar treatment.',
       url: 'https://morpheus8bedford.co.uk',
-      telephone: '07929802094',
-      email: 'info@claritycosmetics.co.uk',
+      telephone: '+447414154007',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Conway Crescent',
@@ -236,6 +235,32 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        {/* Meta Pixel Code */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '463566641956136');
+              fbq('track', 'PageView');
+            `,
+          }}
+        />
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            src="https://www.facebook.com/tr?id=463566641956136&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
       </head>
       <body className={`${openSans.variable} ${montserrat.variable} font-sans`}>{children}</body>
     </html>

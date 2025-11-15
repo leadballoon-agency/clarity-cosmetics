@@ -26,6 +26,14 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://link.leadballoon.co.uk https://connect.facebook.net https://widgets.leadconnectorhq.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; frame-src https://link.leadballoon.co.uk; connect-src 'self' https://link.leadballoon.co.uk https://www.facebook.com; object-src 'none'; base-uri 'self'; form-action 'self' https://link.leadballoon.co.uk; frame-ancestors 'none'; upgrade-insecure-requests;"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
         }
       ]
     },
