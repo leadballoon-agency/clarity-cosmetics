@@ -28,79 +28,36 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
 
         document.body.appendChild(script)
 
-        // Watch for widget to appear in DOM and relocate it to our container
+        // Watch for widget iframe to appear and clone it into our modal
         observerRef.current = new MutationObserver(() => {
           if (widgetLoaded) return
 
-          // Look for the actual widget UI (not the script tag)
-          // GHL widgets typically create custom elements or iframes
-          let widget = null as HTMLElement | null
+          // Look for iframe created by GHL widget
+          const originalIframe = document.querySelector('iframe[src*="leadconnectorhq"]') as HTMLIFrameElement
 
-          // Try finding iframe created by the widget
-          const iframe = document.querySelector('iframe[src*="leadconnectorhq"]') as HTMLElement
-          if (iframe) {
-            widget = iframe
-          }
-
-          // Try finding custom element created by widget
-          if (!widget) {
-            const customElements = Array.from(document.querySelectorAll('*'))
-            for (const el of customElements) {
-              const tagName = el.tagName.toLowerCase()
-              if (tagName.includes('chat') || tagName.includes('widget') || tagName.includes('ghl')) {
-                const htmlEl = el as HTMLElement
-                // Only consider elements that are positioned (likely the widget)
-                if (htmlEl.offsetParent !== null || htmlEl.style.position === 'fixed') {
-                  widget = htmlEl
-                  console.log('Found custom element:', tagName, htmlEl)
-                  break
-                }
-              }
-            }
-          }
-
-          // Try finding positioned divs with specific classes
-          if (!widget) {
-            const potentialWidgets = Array.from(document.querySelectorAll('div'))
-            for (const el of potentialWidgets) {
-              const htmlEl = el as HTMLElement
-              const hasWidgetClasses = htmlEl.className && (
-                htmlEl.className.includes('chat') ||
-                htmlEl.className.includes('widget') ||
-                htmlEl.className.includes('messenger')
-              )
-              const isPositioned = htmlEl.style.position === 'fixed' || htmlEl.style.position === 'absolute'
-
-              if (hasWidgetClasses && isPositioned && htmlEl.offsetHeight > 100) {
-                widget = htmlEl
-                console.log('Found positioned div:', htmlEl.className)
-                break
-              }
-            }
-          }
-
-          if (widget && widgetContainerRef.current) {
-            console.log('Widget UI found and relocating:', widget)
+          if (originalIframe && widgetContainerRef.current) {
+            console.log('Found GHL iframe, cloning to modal:', originalIframe.src)
             setWidgetLoaded(true)
 
-            // Move widget into our container
-            widgetContainerRef.current.appendChild(widget)
+            // Create a new iframe in our modal with the same src
+            const newIframe = document.createElement('iframe')
+            newIframe.src = originalIframe.src
+            newIframe.style.width = '100%'
+            newIframe.style.height = '100%'
+            newIframe.style.minHeight = '600px'
+            newIframe.style.border = 'none'
+            newIframe.style.borderRadius = '8px'
+            newIframe.allow = 'microphone'
+            newIframe.title = 'Model Day Voice Chat'
 
-            // Override default styles to make it fit our modal
-            widget.style.position = 'relative'
-            widget.style.top = 'auto'
-            widget.style.right = 'auto'
-            widget.style.bottom = 'auto'
-            widget.style.left = 'auto'
-            widget.style.width = '100%'
-            widget.style.height = '100%'
-            widget.style.minHeight = '600px'
-            widget.style.maxWidth = '100%'
-            widget.style.maxHeight = '100%'
-            widget.style.transform = 'none'
-            widget.style.margin = '0'
-            widget.style.zIndex = 'auto'
-            widget.style.display = 'block'
+            // Add to our container
+            widgetContainerRef.current.appendChild(newIframe)
+
+            // Hide the original floating widget
+            const widgetParent = originalIframe.closest('div[style*="position"]') as HTMLElement
+            if (widgetParent) {
+              widgetParent.style.display = 'none'
+            }
 
             observerRef.current?.disconnect()
           }
