@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 
 interface BookingModalProps {
   isOpen: boolean
@@ -10,20 +10,16 @@ interface BookingModalProps {
 }
 
 export default function BookingModal({ isOpen, onClose, isModelDay = false }: BookingModalProps) {
-  const [widgetLoaded, setWidgetLoaded] = useState(false)
-  const widgetContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
 
       if (isModelDay) {
-        // GHL Voice AI widget is loaded globally in layout.tsx
-        // Widget will appear as floating button on page load
-        console.log('Model Day modal opened - GHL widget should be available as floating button')
-
+        // Model Day uses iframe to GHL-hosted page with Voice AI widget
+        console.log('Model Day modal opened - loading GHL voice AI page in iframe')
         return () => {
-          // No cleanup needed since widget is loaded globally
+          // No cleanup needed for iframe
         }
       } else {
         // Load GHL calendar for regular bookings
@@ -112,35 +108,22 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
           <div className="relative h-full w-full p-4 sm:p-6 overflow-auto">
             <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 min-h-full">
               {isModelDay ? (
-                /* AI Voice Agent Widget Container for Model Day */
-                <div className="w-full h-full min-h-[600px] relative">
-                  {/* Widget Container - Will be filled by relocated widget */}
-                  <div
-                    ref={widgetContainerRef}
-                    className="w-full h-full min-h-[600px]"
-                  >
-                    {/* Instruction for floating widget */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-                      <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
-                        <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-xl font-bold text-neutral-900 mb-2">
-                        Look for Kerry's Voice Assistant
-                      </h3>
-                      <p className="text-sm text-neutral-600 max-w-md mb-4">
-                        Our AI voice assistant will appear as a floating chat button on your screen. Click it to start your Model Day qualification conversation with Kerry.
-                      </p>
-                      <div className="inline-flex items-center space-x-2 text-primary-600">
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                        </svg>
-                        <span className="text-sm">Loading chat widget...</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                /* AI Voice Agent - iFrame to GHL hosted page */
+                <iframe
+                  src="https://voice.morpheus8bedford.co.uk/test-funnel"
+                  style={{
+                    width: '100%',
+                    minHeight: '600px',
+                    height: '100%',
+                    border: 'none',
+                    overflow: 'hidden'
+                  }}
+                  scrolling="no"
+                  title="Model Day Voice AI Assistant"
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                  allow="microphone 'src'; payment 'src'; fullscreen 'src'"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
               ) : (
                 /* Regular Booking Calendar */
                 <iframe
