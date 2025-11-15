@@ -14,8 +14,21 @@ export default function VideoModal({ isOpen, onClose, videoUrl }: VideoModalProp
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
-      // Auto-play when modal opens
-      videoRef.current?.play()
+      // Auto-play when modal opens (with error handling for iOS)
+      const playVideo = async () => {
+        try {
+          if (videoRef.current) {
+            // Load the video first
+            videoRef.current.load()
+            // Then try to play
+            await videoRef.current.play()
+          }
+        } catch (error) {
+          console.log('Video autoplay prevented (iOS restriction):', error)
+          // User will need to manually click play on iOS
+        }
+      }
+      playVideo()
     } else {
       document.body.style.overflow = 'unset'
       // Pause and reset when modal closes
@@ -64,7 +77,9 @@ export default function VideoModal({ isOpen, onClose, videoUrl }: VideoModalProp
             className="w-full h-auto max-h-[80vh] object-contain"
             controls
             playsInline
-            preload="metadata"
+            webkit-playsinline="true"
+            preload="auto"
+            crossOrigin="anonymous"
           >
             <source src={videoUrl} type="video/mp4" />
             Your browser does not support the video tag.
