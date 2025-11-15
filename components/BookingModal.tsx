@@ -30,10 +30,30 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
 
         // Watch for widget to appear in DOM and relocate it to our container
         observerRef.current = new MutationObserver(() => {
-          // Look for the widget element
-          const widget = document.querySelector('[data-widget-id="69184b46d1e01c2b9cc1fb70"]') as HTMLElement
+          if (widgetLoaded) return
 
-          if (widget && widgetContainerRef.current && !widgetLoaded) {
+          // Try multiple selectors to find the widget
+          let widget = document.querySelector('[data-widget-id="69184b46d1e01c2b9cc1fb70"]') as HTMLElement
+
+          if (!widget) {
+            // Try finding by script-loaded elements
+            widget = document.querySelector('iframe[src*="leadconnectorhq"]') as HTMLElement
+          }
+
+          if (!widget) {
+            // Try finding any new divs that might be the chat widget
+            const chatWidgets = document.querySelectorAll('div[class*="chat"], div[id*="chat"], div[class*="widget"]')
+            for (const el of chatWidgets) {
+              const htmlEl = el as HTMLElement
+              if (htmlEl.style.position === 'fixed' || htmlEl.style.position === 'absolute') {
+                widget = htmlEl
+                break
+              }
+            }
+          }
+
+          if (widget && widgetContainerRef.current) {
+            console.log('Widget found:', widget)
             setWidgetLoaded(true)
 
             // Move widget into our container
@@ -51,6 +71,7 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
             widget.style.maxHeight = '100%'
             widget.style.transform = 'none'
             widget.style.margin = '0'
+            widget.style.zIndex = 'auto'
 
             observerRef.current?.disconnect()
           }
@@ -62,8 +83,18 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
           subtree: true
         })
 
+        // Fallback timeout - if widget doesn't load in 10 seconds, show alternative
+        const timeoutId = setTimeout(() => {
+          if (!widgetLoaded) {
+            console.log('Widget loading timeout - check if script loaded correctly')
+            // The widget might have appeared but we couldn't capture it
+            // Check console for any errors
+          }
+        }, 10000)
+
         return () => {
           try {
+            clearTimeout(timeoutId)
             observerRef.current?.disconnect()
             document.body.removeChild(script)
             setWidgetLoaded(false)
