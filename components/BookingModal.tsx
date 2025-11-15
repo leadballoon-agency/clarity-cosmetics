@@ -45,7 +45,7 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
     return () => {
       document.body.style.overflow = 'unset'
     }
-  }, [isOpen, isModelDay, widgetLoaded])
+  }, [isOpen, isModelDay])
 
   if (!isOpen) return null
 
