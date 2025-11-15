@@ -28,13 +28,11 @@ export default function VideoModal({ isOpen, onClose, videoUrl }: VideoModalProp
     }
   }, [isOpen])
 
-  const handleLoadedMetadata = () => {
-    // Play video as soon as metadata is loaded (triggered by user click on play button)
+  const handleCanPlay = () => {
+    // iOS Safari allows autoplay for muted videos
+    // Try to unmute after playback starts (may not work on iOS, but worth trying)
     if (videoRef.current && isOpen) {
-      console.log('Video metadata loaded, attempting to play...')
-      videoRef.current.play()
-        .then(() => console.log('Video playing successfully'))
-        .catch(err => console.error('Autoplay failed:', err))
+      videoRef.current.muted = false
     }
   }
 
@@ -71,11 +69,13 @@ export default function VideoModal({ isOpen, onClose, videoUrl }: VideoModalProp
             ref={videoRef}
             className="w-full h-auto max-h-[80vh] object-contain"
             controls
+            autoPlay
+            muted
             playsInline
             webkit-playsinline="true"
             x-webkit-airplay="allow"
-            preload="metadata"
-            onLoadedMetadata={handleLoadedMetadata}
+            preload="auto"
+            onCanPlay={handleCanPlay}
           >
             <source src={videoUrl} type="video/mp4" />
             Your browser does not support the video tag.
