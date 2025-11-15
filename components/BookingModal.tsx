@@ -25,9 +25,22 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
         script.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js')
         script.setAttribute('data-widget-id', '69184b46d1e01c2b9cc1fb70')
 
-        document.body.appendChild(script)
+        script.onload = () => {
+          console.log('✓ GHL widget script loaded successfully')
+          console.log('Script element:', script)
+          console.log('Waiting for widget to initialize...')
+        }
 
-        console.log('GHL Voice AI widget script loaded - widget should appear as floating button')
+        script.onerror = (error) => {
+          console.error('✗ Failed to load GHL widget script:', error)
+        }
+
+        document.body.appendChild(script)
+        console.log('GHL Voice AI widget script added to page:', {
+          src: script.src,
+          widgetId: script.getAttribute('data-widget-id'),
+          resourcesUrl: script.getAttribute('data-resources-url')
+        })
 
         // TODO: Temporarily disabled iframe detection to test if widget loads naturally
         // If floating widget appears and works, we'll implement a different approach to embed it in modal
