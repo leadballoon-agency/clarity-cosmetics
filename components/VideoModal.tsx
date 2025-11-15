@@ -28,14 +28,6 @@ export default function VideoModal({ isOpen, onClose, videoUrl }: VideoModalProp
     }
   }, [isOpen])
 
-  const handleCanPlay = () => {
-    // iOS Safari allows autoplay for muted videos
-    // Try to unmute after playback starts (may not work on iOS, but worth trying)
-    if (videoRef.current && isOpen) {
-      videoRef.current.muted = false
-    }
-  }
-
   if (!isOpen) return null
 
   return (
@@ -70,12 +62,10 @@ export default function VideoModal({ isOpen, onClose, videoUrl }: VideoModalProp
             className="w-full h-auto max-h-[80vh] object-contain"
             controls
             autoPlay
-            muted
             playsInline
             webkit-playsinline="true"
             x-webkit-airplay="allow"
             preload="auto"
-            onCanPlay={handleCanPlay}
           >
             <source src={videoUrl} type="video/mp4" />
             Your browser does not support the video tag.
