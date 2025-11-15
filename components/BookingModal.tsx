@@ -12,7 +12,6 @@ interface BookingModalProps {
 export default function BookingModal({ isOpen, onClose, isModelDay = false }: BookingModalProps) {
   const [widgetLoaded, setWidgetLoaded] = useState(false)
   const widgetContainerRef = useRef<HTMLDivElement>(null)
-  const observerRef = useRef<MutationObserver | null>(null)
 
   useEffect(() => {
     if (isOpen) {
@@ -28,39 +27,49 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
 
         document.body.appendChild(script)
 
-        // Watch for widget iframe to appear and clone it into our modal
-        observerRef.current = new MutationObserver(() => {
-          if (widgetLoaded) return
+        // Helper function to search in shadow DOMs
+        function findIframeInShadowDOM(): HTMLIFrameElement | null {
+          const allElements = document.querySelectorAll('*')
 
-          // Helper function to search in shadow DOMs
-          function findIframeInShadowDOM(): HTMLIFrameElement | null {
-            const allElements = document.querySelectorAll('*')
-
-            for (const el of allElements) {
-              // Check regular DOM
-              if (el.tagName === 'IFRAME') {
-                const iframe = el as HTMLIFrameElement
-                if (iframe.src.includes('leadconnectorhq') || iframe.src.includes('msgsndr')) {
-                  return iframe
-                }
-              }
-
-              // Check shadow DOM
-              if (el.shadowRoot) {
-                const iframe = el.shadowRoot.querySelector('iframe') as HTMLIFrameElement
-                if (iframe && (iframe.src.includes('leadconnectorhq') || iframe.src.includes('msgsndr'))) {
-                  console.log('Found iframe in shadow DOM:', el.tagName, iframe.src)
-                  return iframe
-                }
+          for (const el of allElements) {
+            // Check regular DOM
+            if (el.tagName === 'IFRAME') {
+              const iframe = el as HTMLIFrameElement
+              if (iframe.src.includes('leadconnectorhq') || iframe.src.includes('msgsndr')) {
+                console.log('Found iframe in regular DOM:', iframe.src)
+                return iframe
               }
             }
-            return null
+
+            // Check shadow DOM
+            if (el.shadowRoot) {
+              const iframe = el.shadowRoot.querySelector('iframe') as HTMLIFrameElement
+              if (iframe && (iframe.src.includes('leadconnectorhq') || iframe.src.includes('msgsndr'))) {
+                console.log('Found iframe in shadow DOM:', el.tagName, iframe.src)
+                return iframe
+              }
+            }
+          }
+          return null
+        }
+
+        // Use polling instead of MutationObserver (more reliable for Shadow DOM)
+        let attempts = 0
+        const maxAttempts = 50 // Try for 10 seconds (50 * 200ms)
+        const pollInterval = setInterval(() => {
+          attempts++
+          console.log(`Searching for widget iframe... attempt ${attempts}/${maxAttempts}`)
+
+          if (widgetLoaded) {
+            clearInterval(pollInterval)
+            return
           }
 
           const originalIframe = findIframeInShadowDOM()
 
           if (originalIframe && widgetContainerRef.current) {
             console.log('Found GHL iframe, cloning to modal:', originalIframe.src)
+            clearInterval(pollInterval)
             setWidgetLoaded(true)
 
             // Create a new iframe in our modal with the same src
@@ -87,30 +96,15 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
             if (widgetRoot) {
               widgetRoot.style.display = 'none'
             }
-
-            observerRef.current?.disconnect()
+          } else if (attempts >= maxAttempts) {
+            clearInterval(pollInterval)
+            console.log('Widget loading timeout - iframe not found after', maxAttempts, 'attempts')
           }
-        })
-
-        // Start observing
-        observerRef.current.observe(document.body, {
-          childList: true,
-          subtree: true
-        })
-
-        // Fallback timeout - if widget doesn't load in 10 seconds, show alternative
-        const timeoutId = setTimeout(() => {
-          if (!widgetLoaded) {
-            console.log('Widget loading timeout - check if script loaded correctly')
-            // The widget might have appeared but we couldn't capture it
-            // Check console for any errors
-          }
-        }, 10000)
+        }, 200) // Check every 200ms
 
         return () => {
           try {
-            clearTimeout(timeoutId)
-            observerRef.current?.disconnect()
+            clearInterval(pollInterval)
             document.body.removeChild(script)
             setWidgetLoaded(false)
 
