@@ -32,8 +32,32 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
         observerRef.current = new MutationObserver(() => {
           if (widgetLoaded) return
 
-          // Look for iframe created by GHL widget
-          const originalIframe = document.querySelector('iframe[src*="leadconnectorhq"]') as HTMLIFrameElement
+          // Helper function to search in shadow DOMs
+          function findIframeInShadowDOM(): HTMLIFrameElement | null {
+            const allElements = document.querySelectorAll('*')
+
+            for (const el of allElements) {
+              // Check regular DOM
+              if (el.tagName === 'IFRAME') {
+                const iframe = el as HTMLIFrameElement
+                if (iframe.src.includes('leadconnectorhq') || iframe.src.includes('msgsndr')) {
+                  return iframe
+                }
+              }
+
+              // Check shadow DOM
+              if (el.shadowRoot) {
+                const iframe = el.shadowRoot.querySelector('iframe') as HTMLIFrameElement
+                if (iframe && (iframe.src.includes('leadconnectorhq') || iframe.src.includes('msgsndr'))) {
+                  console.log('Found iframe in shadow DOM:', el.tagName, iframe.src)
+                  return iframe
+                }
+              }
+            }
+            return null
+          }
+
+          const originalIframe = findIframeInShadowDOM()
 
           if (originalIframe && widgetContainerRef.current) {
             console.log('Found GHL iframe, cloning to modal:', originalIframe.src)
@@ -54,9 +78,14 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
             widgetContainerRef.current.appendChild(newIframe)
 
             // Hide the original floating widget
-            const widgetParent = originalIframe.closest('div[style*="position"]') as HTMLElement
-            if (widgetParent) {
-              widgetParent.style.display = 'none'
+            let widgetRoot = originalIframe.closest('div[style*="position"]') as HTMLElement
+            if (!widgetRoot) {
+              // Might be in shadow DOM
+              const host = Array.from(document.querySelectorAll('*')).find(el => el.shadowRoot?.contains(originalIframe))
+              if (host) widgetRoot = host as HTMLElement
+            }
+            if (widgetRoot) {
+              widgetRoot.style.display = 'none'
             }
 
             observerRef.current?.disconnect()
