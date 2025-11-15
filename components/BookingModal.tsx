@@ -28,8 +28,8 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
         document.body.appendChild(script)
 
         // Helper function to search in shadow DOMs
-        function findIframeInShadowDOM(): HTMLIFrameElement | null {
-          const allElements = document.querySelectorAll('*')
+        const findIframeInShadowDOM = (): HTMLIFrameElement | null => {
+          const allElements = Array.from(document.querySelectorAll('*'))
 
           for (const el of allElements) {
             // Check regular DOM
