@@ -32,28 +32,55 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
         observerRef.current = new MutationObserver(() => {
           if (widgetLoaded) return
 
-          // Try multiple selectors to find the widget
-          let widget = document.querySelector('[data-widget-id="69184b46d1e01c2b9cc1fb70"]') as HTMLElement
+          // Look for the actual widget UI (not the script tag)
+          // GHL widgets typically create custom elements or iframes
+          let widget = null as HTMLElement | null
 
-          if (!widget) {
-            // Try finding by script-loaded elements
-            widget = document.querySelector('iframe[src*="leadconnectorhq"]') as HTMLElement
+          // Try finding iframe created by the widget
+          const iframe = document.querySelector('iframe[src*="leadconnectorhq"]') as HTMLElement
+          if (iframe) {
+            widget = iframe
           }
 
+          // Try finding custom element created by widget
           if (!widget) {
-            // Try finding any new divs that might be the chat widget
-            const chatWidgets = Array.from(document.querySelectorAll('div[class*="chat"], div[id*="chat"], div[class*="widget"]'))
-            for (const el of chatWidgets) {
+            const customElements = Array.from(document.querySelectorAll('*'))
+            for (const el of customElements) {
+              const tagName = el.tagName.toLowerCase()
+              if (tagName.includes('chat') || tagName.includes('widget') || tagName.includes('ghl')) {
+                const htmlEl = el as HTMLElement
+                // Only consider elements that are positioned (likely the widget)
+                if (htmlEl.offsetParent !== null || htmlEl.style.position === 'fixed') {
+                  widget = htmlEl
+                  console.log('Found custom element:', tagName, htmlEl)
+                  break
+                }
+              }
+            }
+          }
+
+          // Try finding positioned divs with specific classes
+          if (!widget) {
+            const potentialWidgets = Array.from(document.querySelectorAll('div'))
+            for (const el of potentialWidgets) {
               const htmlEl = el as HTMLElement
-              if (htmlEl.style.position === 'fixed' || htmlEl.style.position === 'absolute') {
+              const hasWidgetClasses = htmlEl.className && (
+                htmlEl.className.includes('chat') ||
+                htmlEl.className.includes('widget') ||
+                htmlEl.className.includes('messenger')
+              )
+              const isPositioned = htmlEl.style.position === 'fixed' || htmlEl.style.position === 'absolute'
+
+              if (hasWidgetClasses && isPositioned && htmlEl.offsetHeight > 100) {
                 widget = htmlEl
+                console.log('Found positioned div:', htmlEl.className)
                 break
               }
             }
           }
 
           if (widget && widgetContainerRef.current) {
-            console.log('Widget found:', widget)
+            console.log('Widget UI found and relocating:', widget)
             setWidgetLoaded(true)
 
             // Move widget into our container
@@ -67,11 +94,13 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
             widget.style.left = 'auto'
             widget.style.width = '100%'
             widget.style.height = '100%'
+            widget.style.minHeight = '600px'
             widget.style.maxWidth = '100%'
             widget.style.maxHeight = '100%'
             widget.style.transform = 'none'
             widget.style.margin = '0'
             widget.style.zIndex = 'auto'
+            widget.style.display = 'block'
 
             observerRef.current?.disconnect()
           }
