@@ -207,7 +207,7 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
                   Experience treatments in our beautiful, bespoke treatment room. Immaculately maintained with state-of-the-art equipment in a calming, professional environment.
                 </p>
                 <button
-                  onClick={onBookingClick}
+                  onClick={() => onBookingClick?.(false)}
                   className="inline-flex items-center bg-white text-primary-600 px-5 sm:px-6 py-3.5 sm:py-4 rounded-full font-medium text-sm sm:text-base hover:shadow-lg transition-all duration-300 min-h-[48px]"
                 >
                   Schedule Consultation
