@@ -121,7 +121,7 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
                   scrolling="no"
                   title="Model Day Voice AI Assistant"
                   sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                  allow="microphone 'src'; payment 'src'; fullscreen 'src'"
+                  allow="microphone https://voice.morpheus8bedford.co.uk; payment; fullscreen"
                   referrerPolicy="strict-origin-when-cross-origin"
                 />
               ) : (
