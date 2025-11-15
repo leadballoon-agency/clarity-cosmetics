@@ -14,21 +14,6 @@ export default function VideoModal({ isOpen, onClose, videoUrl }: VideoModalProp
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
-      // Auto-play when modal opens (with error handling for iOS)
-      const playVideo = async () => {
-        try {
-          if (videoRef.current) {
-            // Load the video first
-            videoRef.current.load()
-            // Then try to play
-            await videoRef.current.play()
-          }
-        } catch (error) {
-          console.log('Video autoplay prevented (iOS restriction):', error)
-          // User will need to manually click play on iOS
-        }
-      }
-      playVideo()
     } else {
       document.body.style.overflow = 'unset'
       // Pause and reset when modal closes
