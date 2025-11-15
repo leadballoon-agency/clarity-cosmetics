@@ -27,25 +27,60 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
 
         document.body.appendChild(script)
 
-        // Helper function to search in shadow DOMs
+        // Helper function to search in shadow DOMs and log what we find
         const findIframeInShadowDOM = (): HTMLIFrameElement | null => {
           const allElements = Array.from(document.querySelectorAll('*'))
 
+          // Debug: Log elements that might be the widget
+          const widgetElements = allElements.filter(el =>
+            el.getAttribute('data-widget-id') === '69184b46d1e01c2b9cc1fb70' ||
+            el.tagName.toLowerCase().includes('ghl') ||
+            el.tagName.toLowerCase().includes('chat') ||
+            el.className?.toString().includes('widget') ||
+            el.shadowRoot
+          )
+
+          if (widgetElements.length > 0) {
+            console.log('Found potential widget elements:', widgetElements.map(el => ({
+              tag: el.tagName,
+              id: el.id,
+              class: el.className,
+              hasShadowRoot: !!el.shadowRoot,
+              children: el.shadowRoot?.children.length || el.children.length
+            })))
+          }
+
           for (const el of allElements) {
-            // Check regular DOM
+            // Check regular DOM for any iframe
             if (el.tagName === 'IFRAME') {
               const iframe = el as HTMLIFrameElement
-              if (iframe.src.includes('leadconnectorhq') || iframe.src.includes('msgsndr')) {
-                console.log('Found iframe in regular DOM:', iframe.src)
+              console.log('Found iframe in DOM:', iframe.src, 'id:', iframe.id, 'class:', iframe.className)
+              if (iframe.src.includes('leadconnectorhq') || iframe.src.includes('msgsndr') || iframe.src.includes('chat')) {
+                console.log('✓ This is the GHL iframe!')
                 return iframe
               }
             }
 
             // Check shadow DOM
             if (el.shadowRoot) {
-              const iframe = el.shadowRoot.querySelector('iframe') as HTMLIFrameElement
-              if (iframe && (iframe.src.includes('leadconnectorhq') || iframe.src.includes('msgsndr'))) {
-                console.log('Found iframe in shadow DOM:', el.tagName, iframe.src)
+              const iframes = el.shadowRoot.querySelectorAll('iframe')
+              if (iframes.length > 0) {
+                console.log(`Found ${iframes.length} iframe(s) in shadow DOM of ${el.tagName}`)
+                Array.from(iframes).forEach((iframe: HTMLIFrameElement) => {
+                  console.log('  - iframe src:', iframe.src)
+                  if (iframe.src.includes('leadconnectorhq') || iframe.src.includes('msgsndr') || iframe.src.includes('chat')) {
+                    console.log('  ✓ This is the GHL iframe!')
+                  }
+                })
+              }
+
+              const iframe = Array.from(iframes).find((iframe: HTMLIFrameElement) =>
+                iframe.src.includes('leadconnectorhq') ||
+                iframe.src.includes('msgsndr') ||
+                iframe.src.includes('chat')
+              ) as HTMLIFrameElement | undefined
+
+              if (iframe) {
                 return iframe
               }
             }
