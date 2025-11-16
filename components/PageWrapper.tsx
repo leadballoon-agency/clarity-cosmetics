@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Navigation from '@/components/Navigation'
 import PremiumHero from '@/components/PremiumHero'
+import TrustIconsTicker from '@/components/TrustIconsTicker'
 import AssessmentTool from '@/components/AssessmentTool'
 import AboutSection from '@/components/AboutSection'
 import PremiumTreatments from '@/components/PremiumTreatments'
@@ -30,6 +31,7 @@ export default function PageWrapper() {
       <Navigation onBookingClick={() => handleBookingClick(false)} />
       <main className="overflow-hidden">
         <PremiumHero onBookingClick={() => handleBookingClick(false)} />
+        <TrustIconsTicker />
         <AssessmentTool
           onBookingClick={() => handleBookingClick(false)}
           onAssessmentComplete={(data) => setAssessmentData(data)}

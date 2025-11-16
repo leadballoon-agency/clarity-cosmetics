@@ -36,6 +36,16 @@ export const metadata: Metadata = {
     'non-surgical facelift Bedford',
     'Morpheus8 Bedfordshire'
   ],
+  icons: {
+    icon: [
+      { url: '/images/morpheus8-favicon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/morpheus8-favicon.png', sizes: '16x16', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/images/morpheus8-favicon.png', sizes: '180x180', type: 'image/png' }
+    ],
+    shortcut: '/images/morpheus8-favicon.png'
+  },
   authors: [{ name: 'Claire Emmerson, RN' }],
   creator: 'Clarity Cosmetics',
   publisher: 'Clarity Cosmetics',

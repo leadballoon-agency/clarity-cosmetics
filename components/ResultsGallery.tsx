@@ -65,7 +65,8 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
       treatmentArea: 'Body',
       image: null,
       hasRealImage: false,
-      isModelDay: true
+      isModelDay: true,
+      isFull: true
     },
     {
       title: 'Full Face Transformation',
@@ -81,7 +82,8 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
       treatmentArea: 'Body',
       image: null,
       hasRealImage: false,
-      isModelDay: true
+      isModelDay: true,
+      isFull: true
     }
   ]
 
@@ -104,12 +106,15 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
           {results.map((result, index) => (
             <div
               key={index}
-              className="group relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-premium sm:hover:shadow-premium-lg transition-all duration-300 cursor-pointer"
-              onClick={() => result.isModelDay ? onBookingClick?.(true) : setSelectedImage(index)}
+              className={`group relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-premium sm:hover:shadow-premium-lg transition-all duration-300 ${result.isFull ? 'cursor-not-allowed opacity-90' : 'cursor-pointer'}`}
+              onClick={() => {
+                if (result.isFull) return
+                result.isModelDay ? onBookingClick?.(true) : setSelectedImage(index)
+              }}
             >
               {/* Treatment Area Badge */}
-              <div className={`absolute top-3 sm:top-4 left-3 sm:left-4 z-10 ${result.isModelDay ? 'bg-white text-primary-600' : 'bg-primary-500/90 text-white'} backdrop-blur rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5`}>
-                <span className="text-xs sm:text-sm font-medium">{result.isModelDay ? 'Model Day' : result.treatmentArea}</span>
+              <div className={`absolute top-3 sm:top-4 left-3 sm:left-4 z-10 ${result.isFull ? 'bg-red-500 text-white' : result.isModelDay ? 'bg-white text-primary-600' : 'bg-primary-500/90 text-white'} backdrop-blur rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5`}>
+                <span className="text-xs sm:text-sm font-medium">{result.isFull ? 'SOLD OUT' : result.isModelDay ? 'Model Day' : result.treatmentArea}</span>
               </div>
 
               {/* Before Badge - Only on real images */}
@@ -133,22 +138,30 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
                   />
                 ) : result.isModelDay ? (
                   /* Model Day Card */
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600 flex flex-col items-center justify-center p-6 text-white">
-                    <div className="w-20 h-20 mb-4 rounded-full bg-white/20 backdrop-blur flex items-center justify-center">
-                      <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
+                  <div className={`absolute inset-0 ${result.isFull ? 'bg-gradient-to-br from-neutral-300 via-neutral-400 to-neutral-500' : 'bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600'} flex flex-col items-center justify-center p-6 text-white`}>
+                    <div className={`w-20 h-20 mb-4 rounded-full ${result.isFull ? 'bg-white/30' : 'bg-white/20'} backdrop-blur flex items-center justify-center`}>
+                      {result.isFull ? (
+                        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      ) : (
+                        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      )}
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold mb-2">Model Day Available</p>
-                      <p className="text-sm text-white/90 mb-4">Get discounted treatment in exchange for B&A photos</p>
-                      <div className="inline-flex items-center bg-white text-primary-600 px-4 py-2 rounded-full font-medium text-sm">
-                        <span>Book Your Slot</span>
-                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                      </div>
+                      <p className="text-2xl font-bold mb-2">{result.isFull ? 'Fully Booked' : 'Model Day Available'}</p>
+                      <p className="text-sm text-white/90 mb-4">{result.isFull ? 'This Model Day is fully booked. Check back soon for future availability!' : 'Get discounted treatment in exchange for B&A photos'}</p>
+                      {!result.isFull && (
+                        <div className="inline-flex items-center bg-white text-primary-600 px-4 py-2 rounded-full font-medium text-sm">
+                          <span>Book Your Slot</span>
+                          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ) : (
