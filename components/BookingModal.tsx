@@ -26,7 +26,7 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
         const script = document.createElement('script')
         script.type = 'text/javascript'
         script.async = true
-        script.src = 'https://link.leadballoon.co.uk/js/form_embed.js'
+        script.src = 'https://link.morpheus8bedford.co.uk/js/form_embed.js'
 
         document.body.appendChild(script)
 
@@ -127,7 +127,7 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
               ) : (
                 /* Regular Booking Calendar */
                 <iframe
-                  src="https://link.leadballoon.co.uk/widget/booking/T2xN5Qup3pc5YbWkh6Zf"
+                  src="https://link.morpheus8bedford.co.uk/widget/booking/7PJeNEA5l2Umhuvlpokj"
                   style={{
                     width: '100%',
                     minHeight: '600px',
@@ -136,8 +136,8 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
                     overflow: 'hidden'
                   }}
                   scrolling="no"
-                  id="T2xN5Qup3pc5YbWkh6Zf_1763111779048"
-                  title="Booking Calendar"
+                  id="7PJeNEA5l2Umhuvlpokj_1763324226671"
+                  title="Morpheus8 Booking Calendar"
                   sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                   allow="payment 'src'; fullscreen 'src'"
                   referrerPolicy="strict-origin-when-cross-origin"
