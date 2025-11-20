@@ -116,9 +116,8 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
                     minHeight: '600px',
                     height: '100%',
                     border: 'none',
-                    overflow: 'hidden'
+                    overflow: 'auto'
                   }}
-                  scrolling="no"
                   title="Model Day Voice AI Assistant"
                   sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                   allow="microphone https://voice.morpheus8bedford.co.uk; payment; fullscreen"
@@ -133,9 +132,8 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
                     minHeight: '600px',
                     height: '100%',
                     border: 'none',
-                    overflow: 'hidden'
+                    overflow: 'auto'
                   }}
-                  scrolling="no"
                   id="7PJeNEA5l2Umhuvlpokj_1763324226671"
                   title="Morpheus8 Booking Calendar"
                   sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
