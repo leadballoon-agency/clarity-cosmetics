@@ -33,8 +33,8 @@ export default function Navigation({ onBookingClick }: NavigationProps) {
         <div className="flex justify-between items-center">
           <a href="/" className="flex items-center">
             <img
-              src="/images/clarity-Logo.png"
-              alt="Clarity Cosmetics - CQC Registered"
+              src="/clarity-clinic-logo.png"
+              alt="Clarity Clinic - Skin, Laser & Intimate Health"
               className="h-12 w-auto"
             />
           </a>

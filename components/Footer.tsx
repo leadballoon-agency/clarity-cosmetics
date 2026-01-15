@@ -5,8 +5,8 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8 sm:gap-10">
           <div>
             <img
-              src="/images/clarity-Logo.png"
-              alt="Clarity Cosmetics"
+              src="/clarity-clinic-logo.png"
+              alt="Clarity Clinic - Skin, Laser & Intimate Health"
               className="h-12 mb-5 sm:mb-6"
             />
             <p className="text-white/80 text-sm sm:text-base leading-relaxed">
@@ -54,7 +54,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/20 mt-10 sm:mt-12 pt-8 sm:pt-10 text-center text-white/80 text-sm sm:text-base">
-          <p>&copy; {new Date().getFullYear()} Clarity Cosmetics. All rights reserved. | CQC Registered</p>
+          <p>&copy; {new Date().getFullYear()} Clarity Clinic. All rights reserved. | CQC Registered</p>
         </div>
       </div>
     </footer>

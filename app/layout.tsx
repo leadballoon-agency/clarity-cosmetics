@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     'skin tightening Bedford',
     'wrinkle treatment Bedford',
     'acne scar treatment Bedford',
-    'Clarity Cosmetics',
+    'Clarity Clinic',
     'Claire Emmerson',
     'nurse-led aesthetics Bedford',
     'CQC registered clinic Bedford',
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
     shortcut: '/images/morpheus8-favicon.png'
   },
   authors: [{ name: 'Claire Emmerson, RN' }],
-  creator: 'Clarity Cosmetics',
-  publisher: 'Clarity Cosmetics',
+  creator: 'Clarity Clinic',
+  publisher: 'Clarity Clinic',
   formatDetection: {
     email: false,
     address: false,
@@ -59,13 +59,13 @@ export const metadata: Metadata = {
     title: 'Morpheus8 Bedford | RF Microneedling by Registered Nurse Claire Emmerson',
     description: 'FDA-cleared Morpheus8 RF microneedling in Bedford. CQC registered, nurse-led clinic. Natural results with minimal downtime. Book your free consultation today.',
     url: 'https://morpheus8bedford.co.uk',
-    siteName: 'Morpheus8 Bedford - Clarity Cosmetics',
+    siteName: 'Morpheus8 Bedford - Clarity Clinic',
     images: [
       {
         url: '/images/home1.jpg',
         width: 1200,
         height: 630,
-        alt: 'Claire Emmerson - Registered Nurse & Morpheus8 Specialist at Clarity Cosmetics Bedford',
+        alt: 'Claire Emmerson - Registered Nurse & Morpheus8 Specialist at Clarity Clinic Bedford',
       },
     ],
     locale: 'en_GB',
@@ -99,7 +99,7 @@ const structuredData = {
     {
       '@type': 'MedicalBusiness',
       '@id': 'https://morpheus8bedford.co.uk/#medicalbusiness',
-      name: 'Clarity Cosmetics - Morpheus8 Bedford',
+      name: 'Clarity Clinic - Morpheus8 Bedford',
       image: 'https://morpheus8bedford.co.uk/images/home1.jpg',
       description: 'CQC registered nurse-led aesthetic clinic in Bedford specialising in Morpheus8 RF microneedling treatments for skin tightening, wrinkle reduction, and acne scar treatment.',
       url: 'https://morpheus8bedford.co.uk',
@@ -214,7 +214,7 @@ const structuredData = {
       '@type': 'WebSite',
       '@id': 'https://morpheus8bedford.co.uk/#website',
       url: 'https://morpheus8bedford.co.uk',
-      name: 'Morpheus8 Bedford - Clarity Cosmetics',
+      name: 'Morpheus8 Bedford - Clarity Clinic',
       description: 'FDA-cleared Morpheus8 RF microneedling in Bedford',
       publisher: {
         '@id': 'https://morpheus8bedford.co.uk/#medicalbusiness',
