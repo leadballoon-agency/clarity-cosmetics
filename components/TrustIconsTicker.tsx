@@ -25,11 +25,6 @@ export default function TrustIconsTicker() {
               className="h-12 sm:h-16 md:h-20 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
             />
             <img
-              src="/images/Trust icons/cosmetic-insure.png"
-              alt="Cosmetic Insure"
-              className="h-12 sm:h-16 md:h-20 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
-            />
-            <img
               src="/images/Trust icons/Derma-Medical-Retina-Logo.png"
               alt="Derma Medical"
               className="h-12 sm:h-16 md:h-20 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
@@ -59,11 +54,6 @@ export default function TrustIconsTicker() {
               className="h-12 sm:h-16 md:h-20 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
             />
             <img
-              src="/images/Trust icons/cosmetic-insure.png"
-              alt="Cosmetic Insure"
-              className="h-12 sm:h-16 md:h-20 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
-            />
-            <img
               src="/images/Trust icons/Derma-Medical-Retina-Logo.png"
               alt="Derma Medical"
               className="h-12 sm:h-16 md:h-20 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
@@ -90,11 +80,6 @@ export default function TrustIconsTicker() {
             <img
               src="/images/Trust icons/BAMAN_Logobaman-logo-purple-background-social.png"
               alt="BAMAN Member"
-              className="h-12 sm:h-16 md:h-20 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
-            />
-            <img
-              src="/images/Trust icons/cosmetic-insure.png"
-              alt="Cosmetic Insure"
               className="h-12 sm:h-16 md:h-20 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
             />
             <img
