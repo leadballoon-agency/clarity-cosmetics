@@ -1,6 +1,6 @@
 # CONTENT & ASSETS NEEDED
 
-**Project:** Clarity Cosmetics Morpheus8 Landing Page
+**Project:** Clarity Clinic Morpheus8 Landing Page
 **Date:** November 2025
 **Status:** Development Complete - Awaiting Assets
 
@@ -8,7 +8,7 @@
 
 ## =Ë OVERVIEW
 
-The Morpheus8 landing page is now fully functional and running at `http://localhost:3000`. All content has been adapted for Clarity Cosmetics and Morpheus8, but the following images and content still need to be provided to complete the site.
+The Morpheus8 landing page is now fully functional and running at `http://localhost:3000`. All content has been adapted for Clarity Clinic and Morpheus8, but the following images and content still need to be provided to complete the site.
 
 ---
 
@@ -20,7 +20,7 @@ The Morpheus8 landing page is now fully functional and running at `http://localh
 - **File path:** `/public/images/logo.png`
 - **Recommended size:** 200-300px wide, transparent background
 - **Format:** PNG
-- **Description:** Clarity Cosmetics logo for header navigation
+- **Description:** Clarity Clinic logo for header navigation
 - **Notes:** Should be high resolution for retina displays
 
 #### 2. **Footer Logo**
@@ -52,7 +52,7 @@ The Morpheus8 landing page is now fully functional and running at `http://localh
   - Medical scrubs or professional attire
   - Clean, well-lit clinical setting
   - Warm, approachable expression
-  - Similar to photos on main Clarity Cosmetics website
+  - Similar to photos on main Clarity Clinic website
 
 #### 5. **Secondary Hero/Banner Image**
 - **File path:** `/public/images/home2.jpg`
@@ -133,7 +133,7 @@ The Morpheus8 landing page is now fully functional and running at `http://localh
 The following have been successfully updated:
 
 ### Brand & Identity
-- [x] Business name: Clarity Cosmetics
+- [x] Business name: Clarity Clinic
 - [x] Practitioner name: Claire Emmerson, RN
 - [x] Location: Bedford, MK41 7BW
 - [x] Contact: 07929 802094 | info@claritycosmetics.co.uk
@@ -149,12 +149,12 @@ The following have been successfully updated:
 - [x] About section: Claire's credentials (RM, Independent Prescriber, Advanced Aesthetician)
 - [x] Treatment packages: 3 Morpheus8 options (Face, Face & Neck, Body)
 - [x] FAQ: 6 Morpheus8-specific questions
-- [x] Footer: Clarity Cosmetics contact information
+- [x] Footer: Clarity Clinic contact information
 
 ### SEO & Metadata
-- [x] Page title: "Morpheus8 RF Microneedling in Bedford - Clarity Cosmetics"
+- [x] Page title: "Morpheus8 RF Microneedling in Bedford - Clarity Clinic"
 - [x] Meta description: FDA-cleared, CQC registered, natural results
-- [x] Keywords: Morpheus8, RF microneedling, Bedford, Clarity Cosmetics
+- [x] Keywords: Morpheus8, RF microneedling, Bedford, Clarity Clinic
 
 ---
 
@@ -261,7 +261,7 @@ Before going live:
 
 If you need assistance with:
 - **Image editing/resizing:** Use tools like Canva, Photoshop, or online compressors
-- **Image sourcing:** Can use photos from main Clarity Cosmetics website
+- **Image sourcing:** Can use photos from main Clarity Clinic website
 - **Content writing:** Can adjust any copy to better match your brand voice
 - **Technical issues:** Check console errors in browser dev tools
 - **Deployment:** Ready to help with build and hosting setup

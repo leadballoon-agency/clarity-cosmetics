@@ -24,7 +24,7 @@
 ## BUSINESS OVERVIEW
 
 ### Company Name
-**Clarity Cosmetics**
+**Clarity Clinic**
 
 ### Founded
 2018 in Bedford
@@ -176,7 +176,7 @@ Morpheus8 is a leading skin tightening treatment that targets the deeper layers 
 - Jawline
 
 ### Treatment Process
-1. Thorough consultation at Clarity Cosmetics to tailor treatment to skin goals
+1. Thorough consultation at Clarity Clinic to tailor treatment to skin goals
 2. Topical anaesthetic can be applied (not always required)
 3. Morpheus8 device delivers controlled energy beneath skin surface
 4. Sessions last 30-60 minutes
@@ -488,16 +488,16 @@ Unlike surgical procedures such as labiaplasty or vaginoplasty, EmpowerRF offers
 
 ## PATIENT TESTIMONIALS
 
-### Farrah - Clarity Cosmetics Patient
+### Farrah - Clarity Clinic Patient
 > "Claire is absolutely fabulous, makes me feel so at ease every time and works so hard to achieve the most amazing results! I wouldn't go anywhere else. Thank you"
 
-### Anonymous - Clarity Cosmetics Patient
+### Anonymous - Clarity Clinic Patient
 > "Claire is a highly skilled health professional who made me feel at ease from the moment I walked in. She listened to my goals and worked with me to obtain the result I wanted. Claire is very gentle and albeit I felt some of what she was doing, her caring nature helped me relax completely. I am thrilled with the results and I will continue to visit Claire at her St Neots site of which is a lovely, discreet setting and the parking is great too."
 
 ### Jayde - Lip Filler Patient
 > "Over the moon with how my lip fillers look😍 Claire was friendly and professional, she also kindly squeezed me in at short notice as I have an upcoming event."
 
-### Rachel - Clarity Cosmetics Patient
+### Rachel - Clarity Clinic Patient
 > "Claire is just amazing, she makes you feel so at ease. She is very very talented and what she does and I have complete faith in her work she is just outstanding!! X"
 
 ### Common Themes in Reviews
@@ -581,7 +581,7 @@ Unlike surgical procedures such as labiaplasty or vaginoplasty, EmpowerRF offers
 
 ## COMPETITIVE ADVANTAGES FOR MORPHEUS8 LANDING PAGE
 
-### Why Choose Clarity Cosmetics for Morpheus8?
+### Why Choose Clarity Clinic for Morpheus8?
 
 1. **Expert Practitioner**
    - Claire's midwifery background provides exceptional anatomical knowledge
@@ -693,4 +693,4 @@ Unlike surgical procedures such as labiaplasty or vaginoplasty, EmpowerRF offers
 
 **END OF KNOWLEDGE BASE**
 
-*This document compiled from official Clarity Cosmetics website content scraped on November 12, 2025.*
+*This document compiled from official Clarity Clinic website content scraped on November 12, 2025.*

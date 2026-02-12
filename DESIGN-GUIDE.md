@@ -1,4 +1,4 @@
-# Clarity Cosmetics - Website Design Guide
+# Clarity Clinic - Website Design Guide
 
 **Generated:** 2025-11-12  
 **Website:** https://claritycosmetics.co.uk
@@ -7,7 +7,7 @@
 
 ## Overview
 
-Clarity Cosmetics presents a sophisticated, calming aesthetic that combines medical professionalism with a luxurious spa-like feel. The design emphasizes natural beauty, trust, and expertise in aesthetic medicine.
+Clarity Clinic presents a sophisticated, calming aesthetic that combines medical professionalism with a luxurious spa-like feel. The design emphasizes natural beauty, trust, and expertise in aesthetic medicine.
 
 ---
 
@@ -117,7 +117,7 @@ font-family: 'Open Sans', sans-serif;
 
 ### Logo Description
 
-The Clarity Cosmetics logo features the CQC (Care Quality Commission) registered badge, emphasizing medical credibility and regulatory compliance. The logo uses purple/plum branding from the CQC certification, establishing trust and professional authority.
+The Clarity Clinic logo features the CQC (Care Quality Commission) registered badge, emphasizing medical credibility and regulatory compliance. The logo uses purple/plum branding from the CQC certification, establishing trust and professional authority.
 
 ### Logo Variations
 
@@ -464,7 +464,7 @@ border-radius: slight or sharp edges;
 
 ## Competitor Differentiation
 
-**What Makes Clarity Cosmetics Stand Out:**
+**What Makes Clarity Clinic Stand Out:**
 1. CQC registered facility
 2. Independent prescriber qualification
 3. Registered midwife background
@@ -474,4 +474,4 @@ border-radius: slight or sharp edges;
 
 ---
 
-*This design guide should be used as a reference for maintaining brand consistency across all digital and print materials for Clarity Cosmetics.*
+*This design guide should be used as a reference for maintaining brand consistency across all digital and print materials for Clarity Clinic.*

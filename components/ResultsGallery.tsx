@@ -199,7 +199,7 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
         {/* ASA Compliance Disclaimer */}
         <div className="mt-6 text-center">
           <p className="text-xs sm:text-sm text-neutral-500 italic">
-            Example results courtesy of InMode. Individual results may vary. Not representative of Clarity Cosmetics patient outcomes.
+            Example results courtesy of InMode. Individual results may vary. Not representative of Clarity Clinic patient outcomes.
           </p>
         </div>
 
@@ -208,7 +208,7 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
           <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-premium">
             <img
               src="/images/treatment.jpg"
-              alt="Claire Emmerson's Beautiful Bespoke Treatment Room at Clarity Cosmetics"
+              alt="Claire Emmerson's Beautiful Bespoke Treatment Room at Clarity Clinic"
               className="w-full"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 sm:from-black/60 via-black/40 sm:via-transparent to-transparent flex items-center">
