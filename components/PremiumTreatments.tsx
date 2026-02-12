@@ -104,97 +104,69 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
           ))}
         </div>
 
-        {/* Payment Options - PLIM Finance */}
-        <div className="mt-8 sm:mt-12 bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-premium border border-primary-100">
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
-            {/* Left: Payment Info */}
-            <div>
-              <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl mb-4">
-                <svg className="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-3">Flexible Payment Options</h3>
-              <p className="text-sm sm:text-base text-neutral-600 mb-4 sm:mb-5">
-                Make your treatment more affordable with interest-free payment plans through PLIM
-              </p>
-              <ul className="space-y-2.5 sm:space-y-3">
-                <li className="flex items-start text-sm sm:text-base text-neutral-700">
-                  <svg className="w-5 h-5 text-primary-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span><strong>0% interest</strong> available on selected plans</span>
-                </li>
-                <li className="flex items-start text-sm sm:text-base text-neutral-700">
-                  <svg className="w-5 h-5 text-primary-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span>Spread the cost over <strong>3, 6, or 10 months</strong></span>
-                </li>
-                <li className="flex items-start text-sm sm:text-base text-neutral-700">
-                  <svg className="w-5 h-5 text-primary-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span>Quick online application with <strong>instant decision</strong></span>
-                </li>
-                <li className="flex items-start text-sm sm:text-base text-neutral-700">
-                  <svg className="w-5 h-5 text-primary-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span>No hidden fees or early repayment charges</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Right: Example Calculation */}
-            <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl sm:rounded-2xl p-6 sm:p-7">
-              <div className="text-center mb-5">
-                <p className="text-sm text-neutral-600 mb-1">Example for Face, Neck & Décolleté</p>
-                <p className="text-4xl sm:text-5xl font-bold gradient-text mb-1">£395</p>
-                <p className="text-xs text-neutral-500">One-time payment</p>
-              </div>
-
-              <div className="space-y-3 mb-5">
-                <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm text-neutral-600">3 monthly payments</span>
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">0% APR</span>
-                  </div>
-                  <p className="text-xl sm:text-2xl font-bold text-primary-600">£132<span className="text-sm text-neutral-500">/mo</span></p>
-                </div>
-
-                <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm text-neutral-600">6 monthly payments</span>
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">0% APR</span>
-                  </div>
-                  <p className="text-xl sm:text-2xl font-bold text-primary-600">£66<span className="text-sm text-neutral-500">/mo</span></p>
-                </div>
-
-                <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm text-neutral-600">10 monthly payments</span>
-                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">Low APR</span>
-                  </div>
-                  <p className="text-xl sm:text-2xl font-bold text-primary-600">£40<span className="text-sm text-neutral-500">/mo</span></p>
-                </div>
-              </div>
-
-              <p className="text-xs text-neutral-500 text-center italic">
-                Terms apply. Subject to credit approval. Rates and plans may vary.
-              </p>
-            </div>
+        {/* Payment Options - Klarna */}
+        <div className="mt-8 sm:mt-12 bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-premium border border-primary-100">
+          {/* Klarna Banner */}
+          <div className="bg-[#FFB3C7] p-6 sm:p-8 text-center flex flex-col items-center justify-center">
+            <p className="text-xl sm:text-2xl font-medium text-black mb-3">Pay later with</p>
+            <img
+              src="https://x.klarnacdn.net/payment-method/assets/badges/generic/klarna.svg"
+              alt="Klarna"
+              className="h-8 sm:h-12"
+            />
           </div>
 
-          {/* PLIM Logo/Badge */}
-          <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-primary-100 text-center">
-            <p className="text-sm text-neutral-600 mb-3">Powered by</p>
-            <div className="inline-flex items-center gap-2 bg-white px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-md">
-              <svg className="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-              </svg>
-              <span className="text-lg sm:text-xl font-bold text-neutral-800">PLIM Finance</span>
+          <div className="p-6 sm:p-8 lg:p-10">
+            {/* Benefits */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-neutral-800 mb-1 text-sm sm:text-base">0% Interest</h4>
+                <p className="text-xs sm:text-sm text-neutral-600">No interest charges</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-neutral-800 mb-1 text-sm sm:text-base">Pay in 3</h4>
+                <p className="text-xs sm:text-sm text-neutral-600">Split over 60 days</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-neutral-800 mb-1 text-sm sm:text-base">Instant Approval</h4>
+                <p className="text-xs sm:text-sm text-neutral-600">No credit checks</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-neutral-800 mb-1 text-sm sm:text-base">Secure</h4>
+                <p className="text-xs sm:text-sm text-neutral-600">Safe & trusted</p>
+              </div>
             </div>
+
+            {/* Example Payment */}
+            <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl sm:rounded-2xl p-5 sm:p-6 text-center">
+              <p className="text-sm text-neutral-600 mb-1">Face, Neck & Décolleté</p>
+              <p className="text-3xl sm:text-4xl font-bold gradient-text mb-3">3 x £132</p>
+              <p className="text-sm text-neutral-500">Interest-free. No fees. Pay every 30 days.</p>
+            </div>
+
+            <p className="text-xs text-neutral-400 text-center mt-4 italic">
+              18+. T&Cs apply. Pay in 30 days or pay in 3 interest-free instalments.
+            </p>
           </div>
         </div>
 
