@@ -5,6 +5,7 @@ import Navigation from '@/components/Navigation'
 import PremiumHero from '@/components/PremiumHero'
 import TrustIconsTicker from '@/components/TrustIconsTicker'
 import AssessmentTool from '@/components/AssessmentTool'
+import SkinAnalysisSection from '@/components/SkinAnalysisSection'
 import AboutSection from '@/components/AboutSection'
 import PremiumTreatments from '@/components/PremiumTreatments'
 import ResultsGallery from '@/components/ResultsGallery'
@@ -36,6 +37,7 @@ export default function PageWrapper() {
           onBookingClick={() => handleBookingClick(false)}
           onAssessmentComplete={(data) => setAssessmentData(data)}
         />
+        <SkinAnalysisSection onBookingClick={() => handleBookingClick(false)} />
         <AboutSection onBookingClick={() => handleBookingClick(false)} />
         <PremiumTreatments onBookingClick={() => handleBookingClick(false)} />
         <ResultsGallery onBookingClick={handleBookingClick} />
