@@ -16,7 +16,7 @@ const nextConfig = {
               "img-src 'self' data: https: blob:",
               "frame-src 'self' https://link.morpheus8bedford.co.uk https://voice.morpheus8bedford.co.uk https://www.facebook.com",
               "connect-src 'self' https://link.morpheus8bedford.co.uk https://voice.morpheus8bedford.co.uk https://www.facebook.com",
-              "media-src 'self' blob:",
+              "media-src 'self' blob: https://assets.cdn.filesafe.space https://storage.googleapis.com",
             ].join('; '),
           },
         ],

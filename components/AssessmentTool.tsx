@@ -68,13 +68,13 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
     if (assessmentAnswers[1] === 'sagging') {
       return {
         treatment: 'Face, Neck & Décolleté',
-        price: '£395',
+        price: '£450',
         description: 'Most popular - comprehensive treatment targeting skin laxity, jowls, and loss of definition with visible tightening and lifting results.'
       }
     } else if (assessmentAnswers[1] === 'wrinkles' && assessmentAnswers[3] === '50+') {
       return {
         treatment: 'Face, Neck & Décolleté',
-        price: '£395',
+        price: '£450',
         description: 'Comprehensive rejuvenation for mature skin targeting wrinkles, fine lines, and age-related concerns across face, neck and chest.'
       }
     } else if (assessmentAnswers[1] === 'scars') {
@@ -92,7 +92,7 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
     } else {
       return {
         treatment: 'Face, Neck & Décolleté',
-        price: '£395',
+        price: '£450',
         description: 'Comprehensive treatment for overall skin tightening, rejuvenation and wrinkle reduction.'
       }
     }

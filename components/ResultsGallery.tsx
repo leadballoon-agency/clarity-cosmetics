@@ -9,6 +9,14 @@ interface ResultsGalleryProps {
 export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
 
+  const showcaseResult = {
+    title: 'Face, Neck & Jawline Transformation',
+    description: 'Visible tightening along the jawline, reduced jowls, and smoother skin texture after Morpheus8 treatment',
+    treatmentArea: 'Face & Neck',
+    image: 'https://assets.cdn.filesafe.space/8PNaWjnYgGoS1sfgwICL/media/699421826bac24063ff3bc1e.jpeg',
+    isRealClient: true,
+  }
+
   const results = [
     {
       title: 'Nasolabial Folds & Skin Texture',
@@ -66,6 +74,27 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
           <p className="text-sm sm:text-base lg:text-lg text-neutral-600 mt-2 sm:mt-4 max-w-2xl mx-auto px-4 leading-relaxed">
             Side-by-side before and after results from real Morpheus8 treatments
           </p>
+        </div>
+
+        {/* Showcase - Real Client Result */}
+        <div className="mb-8 sm:mb-12 max-w-3xl mx-auto">
+          <div className="relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-premium-lg">
+            <div className="absolute top-3 left-3 z-10 bg-green-500 text-white backdrop-blur rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5">
+              <span className="text-xs sm:text-sm font-medium">Real Client Result</span>
+            </div>
+            <div className="absolute top-3 right-3 z-10 bg-primary-500/90 text-white backdrop-blur rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5">
+              <span className="text-xs sm:text-sm font-medium">{showcaseResult.treatmentArea}</span>
+            </div>
+            <img
+              src={showcaseResult.image}
+              alt={`${showcaseResult.title} - Before and After`}
+              className="w-full h-auto"
+            />
+            <div className="p-4 sm:p-6">
+              <h3 className="font-bold text-lg sm:text-xl mb-1">{showcaseResult.title}</h3>
+              <p className="text-sm sm:text-base text-neutral-600">{showcaseResult.description}</p>
+            </div>
+          </div>
         </div>
 
         {/* Before & After Grid */}

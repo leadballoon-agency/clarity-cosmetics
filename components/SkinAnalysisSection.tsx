@@ -85,7 +85,7 @@ export default function SkinAnalysisSection({ onBookingClick }: SkinAnalysisSect
                   <h4 className="font-bold text-neutral-800 text-base sm:text-lg">Face, Neck &amp; D&eacute;collet&eacute;</h4>
                   <p className="text-xs sm:text-sm text-neutral-500 mt-0.5">Single session</p>
                 </div>
-                <p className="text-3xl sm:text-4xl font-bold gradient-text mt-2">£395</p>
+                <p className="text-3xl sm:text-4xl font-bold gradient-text mt-2">£450</p>
               </div>
 
               {/* Skin Analysis */}

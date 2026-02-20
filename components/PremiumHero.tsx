@@ -10,7 +10,7 @@ interface PremiumHeroProps {
 export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
   const [isVideoOpen, setIsVideoOpen] = useState(false)
   const videoModalRef = useRef<VideoModalRef>(null)
-  const videoUrl = 'https://storage.googleapis.com/msgsndr/8PNaWjnYgGoS1sfgwICL/media/691753a47635bd1a65fbe307.mp4'
+  const videoUrl = 'https://assets.cdn.filesafe.space/8PNaWjnYgGoS1sfgwICL/media/6998606b3a2afd203f5295ae.mp4'
 
   const handlePlayClick = () => {
     setIsVideoOpen(true)
