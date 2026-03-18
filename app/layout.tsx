@@ -251,6 +251,12 @@ export default function RootLayout({
       <body className={`${openSans.variable} ${montserrat.variable} font-sans`}>
         <MetaPixel />
         {children}
+        <Script
+          src="https://followupsystems.co.uk/widget.js"
+          data-key="35e952215fb8e9a5efe2c565cc8cd8d7"
+          data-project="8e48c1b0-f88a-454a-8716-8d8f321a6dc8"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
