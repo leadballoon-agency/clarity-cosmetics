@@ -18,7 +18,7 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
       title: 'Face, Neck & Décolleté',
       description: 'Complete upper body rejuvenation',
       features: ['Face, neck & chest treatment', 'Tightens and lifts', 'All skin types', 'FDA-cleared technology'],
-      price: '£450',
+      price: '£525',
       gradient: 'from-primary-500 to-primary-600',
       popular: true
     },
@@ -43,7 +43,7 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
             <span className="gradient-text"> RF Microneedling</span>
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-neutral-600 max-w-2xl mx-auto px-4 leading-relaxed">
-            FDA-cleared RF microneedling for face, neck and body. Face, Neck & Décolleté package from £450.
+            FDA-cleared RF microneedling for face, neck and body. Face, Neck & Décolleté package from £525. Course of 3 for £1,400.
           </p>
         </div>
 
@@ -159,8 +159,9 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
 
             {/* Example Payment */}
             <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl sm:rounded-2xl p-5 sm:p-6 text-center">
-              <p className="text-sm text-neutral-600 mb-1">Face, Neck & Décolleté</p>
-              <p className="text-3xl sm:text-4xl font-bold gradient-text mb-3">3 x £150</p>
+              <p className="text-sm text-neutral-600 mb-1">Face, Neck & Décolleté — Course of 3</p>
+              <p className="text-3xl sm:text-4xl font-bold gradient-text mb-3">3 for £1,400</p>
+              <p className="text-xs text-neutral-500 mb-1">Usually £600 per session — save £400</p>
               <p className="text-sm text-neutral-500">Interest-free. No fees. Pay every 30 days.</p>
             </div>
 
