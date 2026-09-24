@@ -1,50 +1,33 @@
-# CO2 Laser Treatment Landing Page
+# Morpheus8 Bedford — Clarity Clinic
 
-Mobile-first responsive landing page for CO2 laser treatments at Aesthetics with Kayleigh.
+Landing page for Morpheus8 RF microneedling at Clarity Clinic, Bedford. Treatments are carried out by Claire Emmerson, Registered Nurse.
+
+**Live site:** https://morpheus8bedford.co.uk
+
+Claire’s Alma Harmony laser site is a separate repo: `leadballoon-agency/clarity-harmony` (https://www.laserbedford.co.uk).
 
 ## Features
 
-- ✅ Mobile-first responsive design
-- ✅ Next.js 15 with TypeScript
-- ✅ Tailwind CSS for styling
-- ✅ SEO optimized
-- ✅ Contact form API endpoint
-- ✅ Smooth scrolling navigation
-- ✅ Interactive FAQ section
-- ✅ Optimized for Vercel deployment
+- Mobile-first responsive design
+- Next.js 15 with TypeScript
+- Tailwind CSS
+- SEO metadata and structured data for Morpheus8 Bedford
+- Contact form API endpoint
+- Booking modal with skin assessment and model-day booking
 
-## Local Development
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the site.
-
-## Deployment to Vercel
-
-1. Push this code to a GitHub repository
-2. Import the project to Vercel
-3. Deploy with default settings
-
-Or use the Vercel CLI:
-
-```bash
-npm i -g vercel
-vercel
-```
-
-## Project Structure
-
-- `/app` - Next.js app directory with layout and pages
-- `/components` - Reusable React components
-- `/app/api` - API routes for form handling
-- `/public` - Static assets
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Contact
 
-Aesthetics with Kayleigh
-📞 07595 944927
-📧 info@aestheticswithkayleigh.co.uk
-📍 15 Hawthorn Drive, School Aycliffe, Durham, DL56GH
+Clarity Clinic  
+Claire Emmerson, RN  
+📞 07414 154007  
+📍 Conway Crescent, Bedford, MK41 7BW  
+🌐 https://claritycosmetics.co.uk

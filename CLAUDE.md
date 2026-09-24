@@ -1,15 +1,37 @@
-# CO2 Laser Landing Page - Claude Instructions
+# Morpheus8 Bedford — Claude Instructions
 
 ## Project Overview
-CO2 laser treatment landing page built with Next.js 15, TypeScript, and Tailwind CSS. This is a template that can be duplicated and customized for different aesthetic clinics.
+
+This repository is the **Morpheus8 Bedford** landing page for **Clarity Clinic**, the nurse-led clinic of **Claire Emmerson, RN** in Bedford.
+
+It is a finished client site, not a blank clinic template. Do not revert copy, contact details, or branding to the old CO2-laser / “Aesthetics with Kayleigh” starter that this repo was cloned from.
+
+- **Repo:** `leadballoon-agency/clarity-cosmetics`
+- **Package name:** `clarity-cosmetics-morpheus8`
+- **Live domain:** https://morpheus8bedford.co.uk
+- **Main clinic site:** https://claritycosmetics.co.uk
+- **Practitioner:** Claire Emmerson, Registered Nurse, Registered Midwife, Independent Prescriber
+- **Clinic:** Clarity Clinic, Conway Crescent, Bedford, MK41 7BW
+- **Phone / WhatsApp:** 07414 154007 (`+447414154007`)
+
+Claire’s **Alma Harmony** laser site is a separate repository and a separate domain. Do not edit it from this workspace.
+
+- **Harmony repo:** `leadballoon-agency/clarity-harmony`
+- **Harmony domain:** https://www.laserbedford.co.uk
+- **Harmony Vercel:** https://clarity-harmony.vercel.app
+
+Clinic background lives in `CLARITY-KNOWLEDGE-BASE.md`. That file lists an older phone number (`07929 802094`). The number on this site is `07414 154007`. Do not change the live number unless asked.
 
 ## Tech Stack
+
 - **Framework:** Next.js 15 with App Router
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS (custom mauve / primary palette in `tailwind.config.js`)
+- **Fonts:** Open Sans and Montserrat
 - **Deployment:** Vercel
 
 ## Development Commands
+
 ```bash
 npm install        # Install dependencies
 npm run dev        # Start development server
@@ -18,107 +40,72 @@ npm run start      # Start production server
 npm run lint       # Run ESLint
 ```
 
-## MCP Server Configurations
-Available MCP servers for this project:
-- **Notion**: For documentation and process management
-- **Playwright**: For automated testing and screenshots
-- **Context7**: For context management
-- **Firecrawl**: For web scraping and content extraction
+## What the page renders
 
-## Project Structure
+`app/page.tsx` renders `components/PageWrapper.tsx`. That is the live page. Several older components (`Hero.tsx`, `About.tsx`, `CTA.tsx`, `Process.tsx`, `Treatment.tsx`, `TeamSection.tsx`, `Header.tsx`) are not mounted.
+
+Order on the page:
+
+1. `Navigation.tsx` — header and booking
+2. `PremiumHero.tsx` — hero and practitioner intro
+3. `TrustIconsTicker.tsx`
+4. `AssessmentTool.tsx` — skin assessment; result is passed into the booking modal
+5. `SkinAnalysisSection.tsx`
+6. `AboutSection.tsx` — Claire and the clinic
+7. `PremiumTreatments.tsx` — Morpheus8 packages and prices
+8. `ResultsGallery.tsx` — before/after, including model-day booking
+9. `ReviewsSection.tsx`
+10. `FAQ.tsx`
+11. `CTASection.tsx`
+12. `Footer.tsx`
+13. `BookingModal.tsx` — opened from booking buttons; supports a model-day variant
+
+Form submissions post to `app/api/contact/route.ts`.
+
+## Current pricing
+
+Set in `components/PremiumTreatments.tsx`:
+
+- Face, Neck & Décolleté: **£550** (marked most popular)
+- Course of 3: **£1,650**
+- Morpheus8 Face and Full Body: price on consultation (`POC`)
+
+Change prices only in that component unless a request names other files.
+
+## Project structure
+
 ```
 /app
-  ├── layout.tsx          # Root layout with SEO metadata
-  ├── page.tsx           # Main page wrapper
-  ├── globals.css        # Global styles
-  └── api/contact/       # Contact form API endpoint
-/components
-  ├── PageWrapper.tsx    # Main page component orchestrator
-  ├── Navigation.tsx     # Header navigation with booking
-  ├── PremiumHero.tsx    # Hero section
-  ├── AboutSection.tsx   # About the clinic
-  ├── TeamSection.tsx    # Team/practitioner info
-  ├── AssessmentTool.tsx # Skin assessment questionnaire
-  ├── PremiumTreatments.tsx # Treatment options
-  ├── ResultsGallery.tsx # Before/after gallery
-  ├── ProcessSection.tsx # Treatment process
-  ├── FAQ.tsx           # Frequently asked questions
-  ├── CTASection.tsx    # Call to action
-  ├── Footer.tsx        # Footer with contact info
-  └── BookingModal.tsx  # Booking form modal
-/public/images/
-  ├── logo.png          # Main logo (navigation)
-  ├── footer.png        # Footer logo
-  ├── home1.jpg         # Hero image
-  ├── beforeafter*.jpg  # Results gallery images
-  └── treatment.jpg     # Treatment images
+  ├── layout.tsx            # SEO, Open Graph, JSON-LD for morpheus8bedford.co.uk
+  ├── page.tsx              # Renders PageWrapper
+  ├── globals.css
+  └── api/contact/route.ts  # Contact / booking form endpoint
+/components                 # Sections listed above, plus unused legacy sections
+/public
+  ├── clarity-clinic-logo.png
+  ├── robots.txt
+  ├── sitemap.xml
+  └── images/               # Hero, favicon, Morpheus8 before/after assets
 ```
 
-## Customization Checklist
-When creating a new clinic version:
+## Files to edit for common requests
 
-### 1. Branding & Images
-- [ ] Replace logo.png with new clinic logo
-- [ ] Replace footer.png with new footer logo
-- [ ] Update hero images (home1.jpg, home2.jpg)
-- [ ] Replace before/after gallery images
-- [ ] Update treatment images
+- **Copy and offers:** `PremiumHero.tsx`, `AboutSection.tsx`, `PremiumTreatments.tsx`, `FAQ.tsx`, `CTASection.tsx`
+- **Contact details:** `Footer.tsx` and the JSON-LD block in `app/layout.tsx` (keep them in sync)
+- **SEO and domain:** `app/layout.tsx` (`metadataBase` is `https://morpheus8bedford.co.uk`)
+- **Booking behaviour:** `BookingModal.tsx`, `PageWrapper.tsx`, `app/api/contact/route.ts`
+- **Embeds and CSP:** `next.config.js` and `vercel.json` allow `morpheus8bedford.co.uk`, LeadConnector, and Follow Up Systems widgets
 
-### 2. Contact Information
-- [ ] components/Footer.tsx - Contact details, address
-- [ ] components/Navigation.tsx - Any contact links
-- [ ] README.md - Contact information
-- [ ] app/layout.tsx - SEO metadata
+## Content rules
 
-### 3. SEO & Metadata
-- [ ] app/layout.tsx - title, description, keywords
-- [ ] Update business name throughout
-- [ ] Location-specific keywords
+- Keep the voice clinical, warm, and specific to Claire at Clarity Clinic in Bedford.
+- This page sells **Morpheus8 RF microneedling** only. Harmony laser, EmpowerRF, and other clinic services belong on their own sites.
+- Results gallery images credited to InMode must stay labelled as example results, not Clarity Clinic patient outcomes.
+- `CONTENT-NEEDED.md` and `MORPHEUS8-IMAGES-NEEDED.md` are asset checklists. They are not the source of truth for live copy.
 
-### 4. Content Customization
-- [ ] Business name and description
-- [ ] Team/practitioner information
-- [ ] Location and address
-- [ ] Phone and email
-- [ ] Treatment descriptions
-- [ ] Pricing (if applicable)
-- [ ] FAQ answers
+## Before finishing a change
 
-### 5. Testing
-- [ ] npm run build (ensure builds successfully)
-- [ ] npm run lint (fix any linting issues)
-- [ ] Test all forms and modals
-- [ ] Verify responsive design
-- [ ] Check all links and navigation
-
-## Key Files to Customize
-
-### High Priority (Must Change)
-1. `components/Footer.tsx` - Contact info, business name, logo
-2. `app/layout.tsx` - SEO metadata, business name
-3. `README.md` - Project description, contact info
-4. `/public/images/logo.png` - Main navigation logo
-5. `/public/images/footer.png` - Footer logo
-
-### Medium Priority (Should Change)
-1. `components/PremiumHero.tsx` - Hero copy and messaging
-2. `components/AboutSection.tsx` - Business description
-3. `components/TeamSection.tsx` - Practitioner information
-4. Hero and gallery images in `/public/images/`
-
-### Low Priority (Optional)
-1. Color scheme in Tailwind config
-2. Component styling adjustments
-3. Additional content sections
-
-## Domain Setup
-- Update package.json name field
-- Configure Vercel deployment for new domain
-- Update any hardcoded URLs
-
-## Notes
-- All components use TypeScript strict mode
-- Responsive design mobile-first
-- Uses Tailwind CSS custom color palette
-- Form submissions go to /api/contact endpoint
-- Booking modal integrates with assessment tool
+- `npm run build` succeeds
+- `npm run lint` is clean, or any new issues are fixed
+- Booking modal still opens from the hero, assessment, and floating Book Now button
+- Phone, address, and domain still match the values in this file
