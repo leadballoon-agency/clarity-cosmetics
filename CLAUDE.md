@@ -2,23 +2,32 @@
 
 ## Project Overview
 
-This repository is the **Morpheus8 Bedford** landing page for **Clarity Clinic**, the nurse-led clinic of **Claire Emmerson, RN** in Bedford.
+**One client, two projects.** Claire Emmerson at Clarity Clinic in Bedford has two separate Leadballoon sites. This repository is only the Morpheus8 project. The Harmony laser site is a different codebase, domain, and offer. Share clinic facts between them. Do not mix treatment copy, pricing, or SEO.
 
-It is a finished client site, not a blank clinic template. Do not revert copy, contact details, or branding to the old CO2-laser / “Aesthetics with Kayleigh” starter that this repo was cloned from.
+This repository is the **Morpheus8 Bedford** landing page. It is a finished client site, not a blank clinic template. Do not revert copy, contact details, or branding to the old CO2-laser / “Aesthetics with Kayleigh” starter that this repo was cloned from.
+
+### This project — Morpheus8
 
 - **Repo:** `leadballoon-agency/clarity-cosmetics`
 - **Package name:** `clarity-cosmetics-morpheus8`
 - **Live domain:** https://morpheus8bedford.co.uk
-- **Main clinic site:** https://claritycosmetics.co.uk
-- **Practitioner:** Claire Emmerson, Registered Nurse, Registered Midwife, Independent Prescriber
+- **Treatment:** Morpheus8 RF microneedling
+
+### The other project — Alma Harmony
+
+Same client. Different project. Do not edit it from this workspace.
+
+- **Repo:** `leadballoon-agency/clarity-harmony`
+- **Live domain:** https://www.laserbedford.co.uk
+- **Vercel:** https://clarity-harmony.vercel.app
+- **Treatment:** Alma Harmony laser / skin resurfacing
+
+### Shared client
+
+- **Client:** Claire Emmerson, Registered Nurse, Registered Midwife, Independent Prescriber
 - **Clinic:** Clarity Clinic, Conway Crescent, Bedford, MK41 7BW
 - **Phone / WhatsApp:** 07414 154007 (`+447414154007`)
-
-Claire’s **Alma Harmony** laser site is a separate repository and a separate domain. Do not edit it from this workspace.
-
-- **Harmony repo:** `leadballoon-agency/clarity-harmony`
-- **Harmony domain:** https://www.laserbedford.co.uk
-- **Harmony Vercel:** https://clarity-harmony.vercel.app
+- **Main clinic site:** https://claritycosmetics.co.uk
 
 Clinic background lives in `CLARITY-KNOWLEDGE-BASE.md`. That file lists an older phone number (`07929 802094`). The number on this site is `07414 154007`. Do not change the live number unless asked.
 
@@ -98,8 +107,8 @@ Change prices only in that component unless a request names other files.
 
 ## Content rules
 
-- Keep the voice clinical, warm, and specific to Claire at Clarity Clinic in Bedford.
-- This page sells **Morpheus8 RF microneedling** only. Harmony laser, EmpowerRF, and other clinic services belong on their own sites.
+- Keep the voice clinical, warm, and specific to Claire at Clarity Clinic in Bedford. Name, credentials, address, and phone are shared with the Harmony project.
+- This page sells **Morpheus8 RF microneedling** only. Harmony laser copy, pricing, and URLs stay in `clarity-harmony`.
 - Results gallery images credited to InMode must stay labelled as example results, not Clarity Clinic patient outcomes.
 - `CONTENT-NEEDED.md` and `MORPHEUS8-IMAGES-NEEDED.md` are asset checklists. They are not the source of truth for live copy.
 

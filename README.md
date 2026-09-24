@@ -4,7 +4,7 @@ Landing page for Morpheus8 RF microneedling at Clarity Clinic, Bedford. Treatmen
 
 **Live site:** https://morpheus8bedford.co.uk
 
-Claire’s Alma Harmony laser site is a separate repo: `leadballoon-agency/clarity-harmony` (https://www.laserbedford.co.uk).
+Claire’s Alma Harmony laser site is a different project for the same client: `leadballoon-agency/clarity-harmony` (https://www.laserbedford.co.uk).
 
 ## Features
 
