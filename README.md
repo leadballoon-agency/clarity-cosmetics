@@ -1,50 +1,39 @@
-# CO2 Laser Treatment Landing Page
+# Morpheus8 Bedford — Clarity Cosmetics
 
-Mobile-first responsive landing page for CO2 laser treatments at Aesthetics with Kayleigh.
+Landing page for Morpheus8 RF microneedling at Clarity Clinic, Bedford. Nurse-led clinic run by Claire Emmerson.
 
-## Features
+This is one of three Clarity Cosmetics landing pages. The full map and the agreed build order are in [CLARITY-SITES.md](./CLARITY-SITES.md).
 
-- ✅ Mobile-first responsive design
-- ✅ Next.js 15 with TypeScript
-- ✅ Tailwind CSS for styling
-- ✅ SEO optimized
-- ✅ Contact form API endpoint
-- ✅ Smooth scrolling navigation
-- ✅ Interactive FAQ section
-- ✅ Optimized for Vercel deployment
+- **This repo:** Morpheus8 — finish this site first
+- **Next:** intimate health (EmpowerRF) in [bladder-leaks](https://github.com/leadballoon-agency/bladder-leaks), after Morpheus8 is finished
+- **Existing:** Alma Harmony laser in [clarity-harmony](https://github.com/leadballoon-agency/clarity-harmony)
 
-## Local Development
+Live site: [morpheus8bedford.co.uk](https://morpheus8bedford.co.uk)
+
+## Stack
+
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
+- Deployed on Vercel
+
+## Local development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the site.
-
-## Deployment to Vercel
-
-1. Push this code to a GitHub repository
-2. Import the project to Vercel
-3. Deploy with default settings
-
-Or use the Vercel CLI:
+Open [http://localhost:3000](http://localhost:3000).
 
 ```bash
-npm i -g vercel
-vercel
+npm run build
+npm run lint
 ```
-
-## Project Structure
-
-- `/app` - Next.js app directory with layout and pages
-- `/components` - Reusable React components
-- `/app/api` - API routes for form handling
-- `/public` - Static assets
 
 ## Contact
 
-Aesthetics with Kayleigh
-📞 07595 944927
-📧 info@aestheticswithkayleigh.co.uk
-📍 15 Hawthorn Drive, School Aycliffe, Durham, DL56GH
+Clarity Clinic
+07414 154007
+info@claritycosmetics.co.uk
+Conway Crescent, Bedford, MK41 7BW
