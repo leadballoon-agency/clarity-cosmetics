@@ -18,7 +18,6 @@ export default function AboutSection({ onBookingClick }: AboutSectionProps) {
                   src={portrait}
                   alt="Claire Emmerson at the door of Clarity Clinic, Bedford"
                   fill
-                  placeholder="blur"
                   sizes="(min-width: 1152px) 420px, (min-width: 1024px) 38vw, 420px"
                   className="object-cover object-top"
                 />

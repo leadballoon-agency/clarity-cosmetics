@@ -162,7 +162,6 @@ export default function SkinAnalysisSection() {
                 src={consultImage}
                 alt="Claire Emmerson explaining a treatment plan to a client holding a mirror"
                 fill
-                placeholder="blur"
                 sizes="(min-width: 1152px) 544px, 45vw"
                 className="object-cover"
               />

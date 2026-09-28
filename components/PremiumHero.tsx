@@ -22,7 +22,7 @@ export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
   }
 
   return (
-    <section className="relative bg-cream-50 pt-24 pb-14 sm:pt-28 sm:pb-20 lg:pt-36 lg:pb-24">
+    <section id="hero" className="relative bg-cream-50 pt-24 pb-14 sm:pt-28 sm:pb-20 lg:pt-36 lg:pb-24">
       <div className="max-w-7xl mx-auto section-padding">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-5 text-center lg:text-left">
@@ -73,8 +73,8 @@ export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
                   alt="Claire Emmerson talking a client through her Morpheus8 treatment plan at Clarity Clinic, Bedford"
                   fill
                   priority
-                  placeholder="blur"
-                  sizes="(min-width: 1280px) 720px, (min-width: 1024px) 58vw, 100vw"
+                  fetchPriority="high"
+                  sizes="(min-width: 1280px) 720px, (min-width: 1024px) 58vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
                   className="object-cover object-[35%_center]"
                 />
                 <button

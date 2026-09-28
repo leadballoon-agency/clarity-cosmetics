@@ -207,7 +207,6 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
               src={roomImage}
               alt="Claire Emmerson's bespoke treatment room at Clarity Clinic, with the Morpheus8 device"
               fill
-              placeholder="blur"
               sizes="(min-width: 1152px) 650px, (min-width: 1024px) 58vw, 100vw"
               className="object-cover"
             />

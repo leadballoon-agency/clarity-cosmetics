@@ -43,7 +43,6 @@ export default function CTASection({ onBookingClick }: CTASectionProps) {
         src={exteriorImage}
         alt=""
         fill
-        placeholder="blur"
         sizes="100vw"
         className="object-cover opacity-30"
       />
