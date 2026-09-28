@@ -160,11 +160,11 @@ export default function ReviewsSection() {
           <span className="text-primary-600 font-medium tracking-wider uppercase text-sm">
             Patient Testimonials
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-2 sm:mt-4">
+          <h2 className="font-display text-[1.6rem] leading-[1.25] sm:text-4xl lg:text-5xl font-bold mt-3 sm:mt-4">
             Trusted by Patients
-            <span className="block gradient-text">Across Bedford</span>
+            <span className="block gradient-text mt-1">Across Bedford</span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-neutral-600 mt-2 sm:mt-4 max-w-2xl mx-auto px-4">
+          <p className="text-sm sm:text-base lg:text-lg text-neutral-600 mt-4 sm:mt-5 max-w-2xl mx-auto px-4 leading-relaxed">
             Real reviews from real patients on Google
           </p>
 

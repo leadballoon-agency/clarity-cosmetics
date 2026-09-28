@@ -21,6 +21,7 @@
 @layer components {
   .gradient-text {
     @apply bg-gradient-to-r from-primary-400 via-primary-500 to-primary-700 bg-clip-text text-transparent;
+    padding-bottom: 0.12em;
   }
 
   .section-padding {

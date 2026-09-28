@@ -8,9 +8,9 @@ export default function AboutSection({ onBookingClick }: AboutSectionProps) {
       <div className="max-w-7xl mx-auto section-padding">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <span className="text-primary-600 font-medium tracking-wider uppercase text-sm">Meet Your Practitioner</span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-2 sm:mt-4">
+          <h2 className="font-display text-[1.6rem] leading-[1.25] sm:text-4xl lg:text-5xl font-bold mt-3 sm:mt-4">
             Expert Care from
-            <span className="block gradient-text">Claire Emmerson, RN</span>
+            <span className="block gradient-text mt-1">Claire Emmerson, RN</span>
           </h2>
         </div>
 
