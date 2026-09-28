@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import Navigation from '@/components/Navigation'
 import PremiumHero from '@/components/PremiumHero'
 import TrustIconsTicker from '@/components/TrustIconsTicker'
-import AssessmentTool from '@/components/AssessmentTool'
+import FusAssessment from '@/components/FusAssessment'
 import SkinAnalysisSection from '@/components/SkinAnalysisSection'
 import AboutSection from '@/components/AboutSection'
 import PremiumTreatments from '@/components/PremiumTreatments'
@@ -20,7 +20,7 @@ import ScrollToTop from '@/components/ScrollToTop'
 export default function PageWrapper() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
   const [isModelDayBooking, setIsModelDayBooking] = useState(false)
-  const [assessmentData, setAssessmentData] = useState<any>(null)
+  const [assessmentData] = useState<any>(null)
   const [showFloatingCta, setShowFloatingCta] = useState(false)
 
   // Floating "Book Now" only appears once the visitor has scrolled past the hero,
@@ -53,10 +53,7 @@ export default function PageWrapper() {
         <PremiumHero onBookingClick={() => handleBookingClick(false)} />
         <TrustIconsTicker />
         <SkinAnalysisSection />
-        <AssessmentTool
-          onBookingClick={() => handleBookingClick(false)}
-          onAssessmentComplete={(data) => setAssessmentData(data)}
-        />
+        <FusAssessment />
         <AboutSection onBookingClick={() => handleBookingClick(false)} />
         <PremiumTreatments onBookingClick={() => handleBookingClick(false)} />
         <ResultsGallery onBookingClick={handleBookingClick} />
