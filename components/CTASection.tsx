@@ -1,91 +1,93 @@
+import Image from 'next/image'
+import { ArrowRight, MapPin, MessageCircle, Phone, Star } from 'lucide-react'
+import exteriorImage from '@/public/images/shoot/DSC09690.jpg'
+
 interface CTASectionProps {
   onBookingClick?: () => void
 }
 
 export default function CTASection({ onBookingClick }: CTASectionProps) {
+  const contactItems = [
+    {
+      icon: Phone,
+      title: 'Call Claire',
+      content: (
+        <a href="tel:+447414154007" className="text-white/80 hover:text-white transition-colors">
+          07414 154007
+        </a>
+      ),
+    },
+    {
+      icon: MessageCircle,
+      title: 'WhatsApp',
+      content: (
+        <a href="https://wa.me/447414154007" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
+          Message Us
+        </a>
+      ),
+    },
+    {
+      icon: MapPin,
+      title: 'Visit',
+      content: (
+        <span className="text-white/80">
+          Conway Crescent<br />Bedford, MK41 7BW
+        </span>
+      ),
+    },
+  ]
+
   return (
-    <section id="contact" className="relative py-16 sm:py-20 md:py-28 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600"></div>
+    <section id="contact" className="relative overflow-hidden bg-ink py-20 sm:py-24 lg:py-28">
+      <Image
+        src={exteriorImage}
+        alt=""
+        fill
+        placeholder="blur"
+        sizes="100vw"
+        className="object-cover opacity-30"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/60 to-ink/80" aria-hidden="true" />
 
-      <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-48 sm:w-72 h-48 sm:h-72 bg-white/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-64 sm:w-96 h-64 sm:h-96 bg-primary-300/20 rounded-full blur-3xl"></div>
-      </div>
+      <div className="relative z-10 max-w-4xl mx-auto section-padding text-center text-white">
+        <span className="text-[11px] sm:text-xs font-medium uppercase tracking-[0.2em] text-primary-200">
+          Book your consultation
+        </span>
 
-      <div className="relative z-10 max-w-5xl mx-auto section-padding text-center text-white">
-        <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/20 backdrop-blur rounded-full mb-4 sm:mb-6">
-          <span className="w-2 h-2 bg-white rounded-full animate-pulse mr-2"></span>
-          <span className="font-medium text-sm">Book Your Consultation</span>
-        </div>
-
-        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-          Ready to Transform
-          <span className="block mt-1 sm:mt-2">Your Skin with Morpheus8?</span>
+        <h2 className="font-display font-normal text-white text-[1.875rem] leading-[1.15] sm:text-[2.25rem] lg:text-[2.75rem] tracking-[-0.01em] mt-5">
+          Ready to transform your skin <em className="italic text-primary-200">with Morpheus8?</em>
         </h2>
 
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-12 max-w-2xl mx-auto text-white/90 px-4 leading-relaxed">
-          Experience FDA-cleared RF microneedling at Bedford's CQC registered clinic
+        <p className="text-base sm:text-[17px] leading-relaxed text-white/75 mt-5 max-w-[44ch] mx-auto">
+          Experience FDA-cleared RF microneedling at Bedford's CQC&nbsp;registered&nbsp;clinic
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-7 mb-8 sm:mb-12 max-w-3xl mx-auto">
-          <div className="bg-white/10 backdrop-blur rounded-xl sm:rounded-2xl p-5 sm:p-7">
-            <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">📞</div>
-            <h3 className="font-semibold text-base sm:text-lg mb-1 sm:mb-2">Call Claire</h3>
-            <a href="tel:+447414154007" className="text-white/90 hover:text-white text-sm sm:text-base inline-block py-1.5">
-              07414 154007
-            </a>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur rounded-xl sm:rounded-2xl p-5 sm:p-7">
-            <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">💬</div>
-            <h3 className="font-semibold text-base sm:text-lg mb-1 sm:mb-2">WhatsApp</h3>
-            <a href="https://wa.me/447414154007" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white text-sm sm:text-base inline-block py-1.5">
-              Message Us
-            </a>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur rounded-xl sm:rounded-2xl p-5 sm:p-7">
-            <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">📍</div>
-            <h3 className="font-semibold text-base sm:text-lg mb-1 sm:mb-2">Visit</h3>
-            <p className="text-white/90 text-sm">
-              Conway Crescent<br />Bedford, MK41 7BW
-            </p>
-          </div>
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 border-y border-white/15 divide-y sm:divide-y-0 sm:divide-x divide-white/15 max-w-3xl mx-auto">
+          {contactItems.map(({ icon: Icon, title, content }) => (
+            <div key={title} className="py-6 sm:px-6">
+              <Icon className="mx-auto h-5 w-5 text-primary-200" strokeWidth={1.25} aria-hidden="true" />
+              <h3 className="font-sans text-[15px] font-medium text-white mt-3">{title}</h3>
+              <div className="text-sm mt-1">{content}</div>
+            </div>
+          ))}
         </div>
 
-        <button
-          onClick={onBookingClick}
-          className="inline-flex items-center justify-center bg-white text-primary-600 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto min-h-[48px]"
-        >
+        <button onClick={onBookingClick} className="btn-light mt-10 w-full sm:w-auto">
           Book Your Free Consultation
-          <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
+          <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
         </button>
 
-        <div className="mt-8 sm:mt-12 flex items-center justify-center flex-wrap gap-4 sm:gap-8">
-          <div className="text-center">
-            <div className="flex justify-center mb-1 sm:mb-2">
+        <div className="mt-10 flex items-center justify-center flex-wrap gap-x-8 gap-y-3 text-[13px] text-white/70">
+          <span className="flex items-center gap-2">
+            <span className="flex gap-0.5" aria-hidden="true">
               {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-yellow-400 text-lg sm:text-xl">★</span>
+                <Star key={i} className="h-3.5 w-3.5 text-[#d9b766]" fill="currentColor" strokeWidth={0} />
               ))}
-            </div>
-            <p className="text-xs sm:text-sm text-white/80">5.0 on Google</p>
-          </div>
-          
-          <div className="hidden sm:block w-px h-12 bg-white/30"></div>
-          
-          <div className="text-center">
-            <p className="text-xl sm:text-2xl font-bold mb-0.5 sm:mb-1">RN</p>
-            <p className="text-xs sm:text-sm text-white/80">Nurse-Led</p>
-          </div>
-          
-          <div className="hidden sm:block w-px h-12 bg-white/30"></div>
-          
-          <div className="text-center">
-            <p className="text-xl sm:text-2xl font-bold mb-0.5 sm:mb-1">10+</p>
-            <p className="text-xs sm:text-sm text-white/80">Years Experience</p>
-          </div>
+            </span>
+            5.0 on Google
+          </span>
+          <span>Midwife &amp; nurse-led</span>
+          <span>10+ years experience</span>
         </div>
       </div>
     </section>

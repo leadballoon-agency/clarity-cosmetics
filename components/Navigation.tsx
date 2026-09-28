@@ -1,111 +1,98 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Menu, X } from 'lucide-react'
 
 interface NavigationProps {
   onBookingClick?: () => void
 }
 
+const LINKS = ['About', 'Treatments', 'Results', 'FAQ', 'Contact']
+
 export default function Navigation({ onBookingClick }: NavigationProps) {
-  const [isVisible, setIsVisible] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY
-      // Show nav when scrolled past 100px
-      setIsVisible(currentScrollY > 100)
-      // Add background when scrolled past 50px
-      setIsScrolled(currentScrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => setIsScrolled(window.scrollY > 24)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ${
-      isVisible ? 'top-0' : '-top-24'
-    } ${
-      isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-lg py-4' : 'bg-transparent py-6'
-    }`}>
+    <nav
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        isScrolled || isMobileMenuOpen
+          ? 'bg-cream-50/95 backdrop-blur-md border-b border-cream-200'
+          : 'bg-transparent border-b border-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto section-padding">
-        <div className="flex justify-between items-center">
+        <div className="flex h-16 lg:h-[72px] items-center justify-between">
           <a href="/" className="flex items-center">
             <img
               src="/clarity-clinic-logo.png"
               alt="Clarity Clinic - Skin, Laser & Intimate Health"
-              className="h-12 w-auto"
+              width={1000}
+              height={160}
+              className="h-7 sm:h-8 w-auto"
             />
           </a>
 
-          <div className="hidden md:flex items-center space-x-8">
-            {['About', 'Treatments', 'Results', 'FAQ', 'Contact'].map((item) => (
+          <div className="hidden lg:flex items-center gap-8">
+            {LINKS.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className={`font-medium transition-colors ${
-                  isScrolled ? 'text-neutral-700 hover:text-sage-600' : 'text-neutral-700 hover:text-sage-600'
-                }`}
+                className="text-[14px] text-neutral-600 hover:text-ink transition-colors"
               >
                 {item}
               </a>
             ))}
           </div>
 
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden lg:flex items-center gap-5">
             <a
               href="#skin-analysis"
-              className="text-primary-600 font-medium hover:text-primary-700 transition-colors"
+              className="text-[14px] text-primary-700 hover:text-primary-800 transition-colors"
             >
               Free Analysis
             </a>
-            <span className="text-neutral-300">|</span>
-            <button
-              onClick={onBookingClick}
-              className="inline-flex bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-2.5 rounded-full font-medium hover:shadow-lg transition-all duration-300 hover:scale-105"
-            >
+            <button onClick={onBookingClick} className="btn-primary !min-h-0 !py-2.5 !px-5 !text-[14px]">
               Book Consultation
             </button>
           </div>
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2"
+            className="lg:hidden -mr-2 p-2 text-ink"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
           >
-            <div className="w-6 h-5 relative flex flex-col justify-between">
-              <span className={`block h-0.5 w-full transition-all ${
-                isScrolled ? 'bg-neutral-700' : 'bg-neutral-700'
-              } ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-              <span className={`block h-0.5 w-full transition-all ${
-                isScrolled ? 'bg-neutral-700' : 'bg-neutral-700'
-              } ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
-              <span className={`block h-0.5 w-full transition-all ${
-                isScrolled ? 'bg-neutral-700' : 'bg-neutral-700'
-              } ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-            </div>
+            {isMobileMenuOpen ? <X className="h-6 w-6" strokeWidth={1.5} /> : <Menu className="h-6 w-6" strokeWidth={1.5} />}
           </button>
         </div>
 
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-neutral-200">
-            <div className="flex flex-col space-y-3">
-              {['About', 'Treatments', 'Results', 'FAQ', 'Contact'].map((item) => (
+          <div className="lg:hidden pb-6 pt-2 border-t border-cream-200">
+            <div className="flex flex-col">
+              {LINKS.map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-neutral-700 hover:text-sage-600 font-medium py-2"
+                  className="py-3 text-[15px] text-neutral-700 border-b border-cream-200/70"
                 >
                   {item}
                 </a>
               ))}
 
-              <div className="border-t border-neutral-200 pt-3 mt-2 space-y-3">
+              <div className="pt-5 grid gap-3">
                 <a
                   href="#skin-analysis"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-center border-2 border-primary-500 text-primary-600 px-6 py-3 rounded-full font-medium"
+                  className="btn-outline w-full"
                 >
                   Free Analysis
                 </a>
@@ -114,7 +101,7 @@ export default function Navigation({ onBookingClick }: NavigationProps) {
                     setIsMobileMenuOpen(false)
                     onBookingClick?.()
                   }}
-                  className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3 rounded-full font-medium text-center w-full"
+                  className="btn-primary w-full"
                 >
                   Book Consultation
                 </button>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { CalendarDays, Camera, ShieldCheck, Star, Stethoscope, X } from 'lucide-react'
 
 interface BookingModalProps {
   isOpen: boolean
@@ -53,60 +54,50 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
     <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4">
       {/* Backdrop with glassmorphism */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70 backdrop-blur-md"
+        className="absolute inset-0 bg-ink/60 backdrop-blur-sm"
         onClick={onClose}
       />
 
       {/* Modal Container - Full screen on mobile, contained on desktop */}
-      <div className="relative w-full h-full sm:h-auto sm:max-h-[95vh] sm:max-w-4xl bg-white sm:rounded-3xl shadow-2xl overflow-hidden animate-modal-slide-up flex flex-col">
+      <div className="relative w-full h-full sm:h-auto sm:max-h-[95vh] sm:max-w-4xl bg-white sm:rounded-2xl shadow-xl overflow-hidden animate-modal-slide-up flex flex-col">
 
         {/* Premium Header */}
-        <div className={`relative bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 ${isModelDay ? 'p-3 sm:p-4' : 'p-5 sm:p-6'} text-white flex-shrink-0 shadow-lg`}>
-          {/* Decorative background elements */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white rounded-full blur-3xl"></div>
-          </div>
+        <div className={`relative bg-cream-50 border-b border-cream-200 ${isModelDay ? 'p-4 sm:p-5' : 'p-5 sm:p-7'} pr-16 sm:pr-20 flex-shrink-0`}>
 
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 hover:scale-110 z-10 group"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 rounded-full border border-cream-300 bg-white text-ink flex items-center justify-center hover:border-primary-500 transition-colors z-10"
             aria-label="Close booking calendar"
           >
-            <svg className="w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <X className="w-5 h-5" strokeWidth={1.5} />
           </button>
 
           {/* Header content */}
-          <div className="relative text-center sm:text-left">
-            <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-md rounded-2xl mb-3 sm:mb-4">
-              <span className="text-3xl sm:text-4xl">{isModelDay ? '📸' : '📅'}</span>
+          <div className="relative flex items-start gap-4">
+            <div className="hidden sm:flex items-center justify-center w-11 h-11 flex-shrink-0 rounded-full border border-primary-200 bg-white text-primary-600">
+              {isModelDay ? <Camera className="h-5 w-5" strokeWidth={1.25} /> : <CalendarDays className="h-5 w-5" strokeWidth={1.25} />}
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-2">
+            <div>
+            <h2 className="heading-3 !text-2xl sm:!text-[1.75rem] mb-1.5">
               {isModelDay ? 'Request a Model Day' : 'Book Your Consultation'}
             </h2>
-            <p className="text-white/90 text-sm sm:text-base max-w-2xl">
+            <p className="text-neutral-600 text-sm sm:text-[15px] max-w-2xl">
               {isModelDay
                 ? 'Book your discounted model day appointment. Claire will confirm availability and discuss before & after photo requirements within 24 hours.'
                 : 'Choose your preferred date and time. Claire will confirm your appointment within 24 hours.'
               }
             </p>
+            </div>
           </div>
         </div>
 
         {/* Calendar Widget Container - Fills remaining space */}
-        <div className="flex-1 overflow-hidden bg-gradient-to-b from-white to-primary-50/30 relative">
-          {/* Subtle decorative background */}
-          <div className="absolute inset-0 opacity-5 pointer-events-none">
-            <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary-400 rounded-full blur-3xl"></div>
-          </div>
+        <div className="flex-1 overflow-hidden bg-white relative">
 
           {/* Widget wrapper with proper padding */}
           <div className="relative h-full w-full p-4 sm:p-6 overflow-auto">
-            <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 min-h-full">
+            <div className="bg-white min-h-full">
               {isModelDay ? (
                 /* AI Voice Agent - iFrame to GHL hosted page */
                 <iframe
@@ -147,26 +138,20 @@ export default function BookingModal({ isOpen, onClose, isModelDay = false }: Bo
 
         {/* Trust Badge Footer - Hidden for Model Day to maximize content space */}
         {!isModelDay && (
-          <div className="flex-shrink-0 bg-white border-t border-primary-100 px-5 sm:px-6 py-3 sm:py-4">
+          <div className="flex-shrink-0 bg-white border-t border-cream-200 px-5 sm:px-6 py-3 sm:py-4">
             <div className="flex items-center justify-center gap-6 text-xs sm:text-sm text-neutral-600">
               <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
+                <ShieldCheck className="w-4 h-4 text-primary-600" strokeWidth={1.5} />
                 <span className="hidden sm:inline">CQC Registered</span>
                 <span className="sm:hidden">CQC</span>
               </div>
               <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                </svg>
-                <span className="hidden sm:inline">Nurse-Led</span>
-                <span className="sm:hidden">RN</span>
+                <Stethoscope className="w-4 h-4 text-primary-600" strokeWidth={1.5} />
+                <span className="hidden sm:inline">Midwife &amp; nurse-led</span>
+                <span className="sm:hidden">Nurse-led</span>
               </div>
               <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+                <Star className="w-4 h-4 text-[#c9a24d]" fill="currentColor" strokeWidth={0} />
                 <span className="hidden sm:inline">5.0 Google Rating</span>
                 <span className="sm:hidden">5.0★</span>
               </div>

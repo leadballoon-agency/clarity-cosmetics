@@ -1,17 +1,19 @@
 import type { Metadata } from 'next'
-import { Open_Sans, Montserrat } from 'next/font/google'
+import { Inter, Fraunces } from 'next/font/google'
 import Script from 'next/script'
 import MetaPixel from '@/components/MetaPixel'
 import './globals.css'
 
-const openSans = Open_Sans({
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
 })
 
-const montserrat = Montserrat({
+const fraunces = Fraunces({
   subsets: ['latin'],
+  style: ['normal', 'italic'],
+  axes: ['opsz'],
   variable: '--font-display',
   display: 'swap',
 })
@@ -19,7 +21,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL('https://morpheus8bedford.co.uk'),
   title: {
-    default: 'Morpheus8 Bedford | RF Microneedling by Registered Nurse Claire Emmerson',
+    default: 'Morpheus8 Bedford | RF Microneedling by Midwife & Aesthetic Nurse Claire Emmerson',
     template: '%s | Morpheus8 Bedford'
   },
   description: 'FDA-cleared Morpheus8 RF microneedling in Bedford. CQC registered, nurse-led clinic specialising in skin tightening, wrinkle reduction & acne scar treatment. Natural results, minimal downtime.',
@@ -47,7 +49,7 @@ export const metadata: Metadata = {
     ],
     shortcut: '/images/morpheus8-favicon.png'
   },
-  authors: [{ name: 'Claire Emmerson, RN' }],
+  authors: [{ name: 'Claire Emmerson, Midwife & Aesthetic Nurse' }],
   creator: 'Clarity Clinic',
   publisher: 'Clarity Clinic',
   formatDetection: {
@@ -56,7 +58,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: 'Morpheus8 Bedford | RF Microneedling by Registered Nurse Claire Emmerson',
+    title: 'Morpheus8 Bedford | RF Microneedling by Midwife & Aesthetic Nurse Claire Emmerson',
     description: 'FDA-cleared Morpheus8 RF microneedling in Bedford. CQC registered, nurse-led clinic. Natural results with minimal downtime. Book your free consultation today.',
     url: 'https://morpheus8bedford.co.uk',
     siteName: 'Morpheus8 Bedford - Clarity Clinic',
@@ -65,7 +67,7 @@ export const metadata: Metadata = {
         url: '/images/home1.jpg',
         width: 1200,
         height: 630,
-        alt: 'Claire Emmerson - Registered Nurse & Morpheus8 Specialist at Clarity Clinic Bedford',
+        alt: 'Claire Emmerson - Midwife, Aesthetic Nurse & Morpheus8 Specialist at Clarity Clinic Bedford',
       },
     ],
     locale: 'en_GB',
@@ -73,7 +75,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Morpheus8 Bedford | RF Microneedling by Registered Nurse Claire Emmerson',
+    title: 'Morpheus8 Bedford | RF Microneedling by Midwife & Aesthetic Nurse Claire Emmerson',
     description: 'FDA-cleared Morpheus8 RF microneedling in Bedford. CQC registered, nurse-led clinic. Natural results with minimal downtime.',
     images: ['/images/home1.jpg'],
   },
@@ -138,15 +140,15 @@ const structuredData = {
       '@type': 'Person',
       '@id': 'https://morpheus8bedford.co.uk/#person',
       name: 'Claire Emmerson',
-      jobTitle: 'Registered Nurse & Aesthetic Practitioner',
+      jobTitle: 'Midwife & Aesthetic Nurse',
       image: 'https://morpheus8bedford.co.uk/images/home1.jpg',
-      description: 'Registered Nurse with over 10 years of experience, specialising in Morpheus8 RF microneedling and aesthetic treatments. CQC registered and Independent Prescriber.',
+      description: 'Registered midwife and aesthetic nurse with over 10 years of experience, specialising in Morpheus8 RF microneedling and aesthetic treatments. CQC registered and Independent Prescriber.',
       worksFor: {
         '@id': 'https://morpheus8bedford.co.uk/#medicalbusiness',
       },
       alumniOf: 'Nursing & Midwifery Council',
       hasCredential: [
-        'Registered Nurse (RN)',
+        'Aesthetic Nurse',
         'Registered Midwife',
         'Independent Prescriber',
         'Advanced Aesthetic Practitioner',
@@ -248,7 +250,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className={`${openSans.variable} ${montserrat.variable} font-sans`}>
+      <body className={`${inter.variable} ${fraunces.variable} font-sans`}>
         <MetaPixel />
         {children}
         <Script
