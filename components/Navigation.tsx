@@ -55,10 +55,10 @@ export default function Navigation({ onBookingClick }: NavigationProps) {
 
           <div className="hidden md:flex items-center space-x-3">
             <a
-              href="#assessment"
+              href="#skin-analysis"
               className="text-primary-600 font-medium hover:text-primary-700 transition-colors"
             >
-              Skin Assessment
+              Free Analysis
             </a>
             <span className="text-neutral-300">|</span>
             <button
@@ -103,11 +103,11 @@ export default function Navigation({ onBookingClick }: NavigationProps) {
 
               <div className="border-t border-neutral-200 pt-3 mt-2 space-y-3">
                 <a
-                  href="#assessment"
+                  href="#skin-analysis"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block text-center border-2 border-primary-500 text-primary-600 px-6 py-3 rounded-full font-medium"
                 >
-                  Skin Assessment
+                  Free Analysis
                 </a>
                 <button
                   onClick={() => {

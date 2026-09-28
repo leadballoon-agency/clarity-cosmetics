@@ -66,10 +66,10 @@ export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
                 <span className="text-xs text-neutral-500 mt-2.5 sm:mt-2">Fully redeemable against your treatment</span>
               </div>
               <a
-                href="#assessment"
+                href="#skin-analysis"
                 className="inline-flex items-center justify-center border-2 border-primary-500 text-primary-600 px-7 py-3.5 rounded-full font-medium text-base hover:bg-primary-50 transition-all duration-300 w-full sm:w-auto min-h-[48px]"
               >
-                Free Skin Assessment
+                Free Skin Analysis
               </a>
             </div>
 

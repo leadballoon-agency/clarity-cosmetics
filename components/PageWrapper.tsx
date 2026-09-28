@@ -33,11 +33,11 @@ export default function PageWrapper() {
       <main className="overflow-hidden">
         <PremiumHero onBookingClick={() => handleBookingClick(false)} />
         <TrustIconsTicker />
+        <SkinAnalysisSection />
         <AssessmentTool
           onBookingClick={() => handleBookingClick(false)}
           onAssessmentComplete={(data) => setAssessmentData(data)}
         />
-        <SkinAnalysisSection onBookingClick={() => handleBookingClick(false)} />
         <AboutSection onBookingClick={() => handleBookingClick(false)} />
         <PremiumTreatments onBookingClick={() => handleBookingClick(false)} />
         <ResultsGallery onBookingClick={handleBookingClick} />
