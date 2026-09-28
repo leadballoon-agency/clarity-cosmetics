@@ -1,6 +1,9 @@
 'use client'
 
 import { FormEvent, useState } from 'react'
+import Image from 'next/image'
+import { Check, ImageUp } from 'lucide-react'
+import consultImage from '@/public/images/shoot/DSC09759.jpg'
 
 const CONCERNS = [
   'Skin laxity',
@@ -117,59 +120,61 @@ export default function SkinAnalysisSection() {
   }
 
   return (
-    <section id="skin-analysis" className="py-16 sm:py-20 md:py-28 bg-gradient-to-b from-white to-primary-50">
-      <div className="max-w-7xl mx-auto section-padding">
+    <section id="skin-analysis" className="section-y bg-cream-100">
+      <div className="max-w-6xl mx-auto section-padding">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div>
-              <div className="inline-flex items-center px-3 py-1.5 bg-primary-100 rounded-full mb-4">
-                <span className="w-2 h-2 bg-primary-500 rounded-full animate-pulse mr-2"></span>
-                <span className="text-primary-700 font-medium text-sm">Free online skin analysis</span>
-              </div>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-                Discover what your skin
-                <span className="block gradient-text">really needs</span>
+              <span className="eyebrow">Free online skin analysis</span>
+              <h2 className="heading-2 mt-4">
+                Discover what your skin <em className="heading-accent">really needs</em>
               </h2>
-              <p className="text-base sm:text-lg text-neutral-700 font-medium mt-4">
+              <p className="text-[17px] text-ink mt-5">
                 Not sure which treatment would be most suitable for your skin?
               </p>
-              <p className="text-sm sm:text-base text-neutral-600 leading-relaxed mt-3">
-                Clarity Cosmetics is offering a free online skin analysis to help you understand your options — including whether Morpheus8 could be suitable for your goals.
+              <p className="lead mt-3">
+                Clarity Cosmetics is offering a free online skin analysis to help you understand your options — including whether Morpheus8 could be suitable for your&nbsp;goals.
               </p>
-              <p className="text-sm sm:text-base text-neutral-600 leading-relaxed mt-3">
-                Simply upload a clear photo and the team will review your skin and provide personalised guidance.
+              <p className="lead mt-3">
+                Simply upload a clear photo and the team will review your skin and provide personalised&nbsp;guidance.
               </p>
             </div>
 
-            <div>
-              <h3 className="font-display text-lg sm:text-xl font-bold text-neutral-800">
+            <div className="border-t border-cream-300 pt-8">
+              <h3 className="heading-3">
                 Morpheus8 combines microneedling with radiofrequency
               </h3>
-              <p className="text-sm sm:text-base text-neutral-600 mt-2">
+              <p className="text-[15px] text-neutral-600 mt-2">
                 It can be used to help improve the appearance of:
               </p>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-4 space-y-2.5">
                 {CONCERNS.map((concern) => (
-                  <li key={concern} className="flex items-center">
-                    <svg className="w-5 h-5 text-primary-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-sm sm:text-base text-neutral-700 font-medium">{concern}</span>
+                  <li key={concern} className="flex items-center gap-3">
+                    <Check className="h-4 w-4 flex-shrink-0 text-primary-600" strokeWidth={1.75} aria-hidden="true" />
+                    <span className="text-[15px] text-neutral-700">{concern}</span>
                   </li>
                 ))}
               </ul>
             </div>
+
+            <div className="hidden lg:block relative aspect-[3/2] overflow-hidden rounded-2xl">
+              <Image
+                src={consultImage}
+                alt="Claire Emmerson explaining a treatment plan to a client holding a mirror"
+                fill
+                sizes="(min-width: 1152px) 544px, 45vw"
+                className="object-cover"
+              />
+            </div>
           </div>
 
-          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-premium border border-primary-100 p-5 sm:p-8">
+          <div className="card p-6 sm:p-8">
             {status === 'success' ? (
               <div className="text-center py-8 sm:py-12">
-                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary-100">
-                  <svg className="w-7 h-7 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                  </svg>
+                <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-primary-200 bg-primary-50">
+                  <Check className="h-5 w-5 text-primary-600" strokeWidth={1.75} aria-hidden="true" />
                 </div>
-                <h3 className="font-display text-2xl font-bold text-neutral-800">Photo received</h3>
+                <h3 className="heading-3 !text-2xl">Photo received</h3>
                 <p className="text-neutral-600 mt-3 leading-relaxed">
                   Thank you. Claire&apos;s team will review your photo and be in touch with personalised guidance on whether Morpheus8 could suit your goals.
                 </p>
@@ -177,10 +182,10 @@ export default function SkinAnalysisSection() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <h3 className="font-display text-2xl font-bold text-neutral-800">
+                  <h3 className="heading-3 !text-2xl">
                     Upload your photo today
                   </h3>
-                  <p className="text-sm text-neutral-600 mt-1">
+                  <p className="text-sm text-neutral-600 mt-2">
                     For your free skin analysis. Use a clear, front-facing photo in natural light, without heavy filters.
                   </p>
                 </div>
@@ -198,18 +203,16 @@ export default function SkinAnalysisSection() {
                       setIsDragging(false)
                       void preparePhoto(event.dataTransfer.files?.[0])
                     }}
-                    className={`relative flex min-h-[180px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-4 py-6 text-center transition-colors ${
-                      isDragging ? 'border-primary-500 bg-primary-50' : 'border-primary-200 bg-primary-50/40 hover:border-primary-400'
+                    className={`relative flex min-h-[168px] cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed px-4 py-6 text-center transition-colors ${
+                      isDragging ? 'border-primary-500 bg-primary-50' : 'border-neutral-300 bg-cream-50 hover:border-primary-400'
                     }`}
                   >
                     {preview ? (
-                      <img src={preview} alt="Your uploaded skin photo preview" className="max-h-56 w-auto rounded-xl object-contain" />
+                      <img src={preview} alt="Your uploaded skin photo preview" className="max-h-56 w-auto rounded-lg object-contain" />
                     ) : (
                       <>
-                        <svg className="w-8 h-8 text-primary-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M8 8h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        <span className="font-medium text-neutral-800">Upload a clear photo</span>
+                        <ImageUp className="h-7 w-7 text-primary-600 mb-3" strokeWidth={1.25} aria-hidden="true" />
+                        <span className="text-[15px] font-medium text-ink">Upload a clear photo</span>
                         <span className="text-sm text-neutral-500 mt-1">JPG, PNG, or WEBP. Tap to choose or take a photo.</span>
                       </>
                     )}
@@ -232,7 +235,7 @@ export default function SkinAnalysisSection() {
                         setPhoto('')
                         setPreview('')
                       }}
-                      className="mt-2 text-sm font-medium text-primary-600 hover:text-primary-700"
+                      className="mt-2 text-sm font-medium text-primary-700 hover:text-primary-800"
                     >
                       Remove photo
                     </button>
@@ -248,7 +251,7 @@ export default function SkinAnalysisSection() {
                       autoComplete="name"
                       value={name}
                       onChange={(event) => setName(event.target.value)}
-                      className="mt-1 w-full rounded-xl border border-neutral-200 px-4 py-3 text-neutral-800 outline-none focus:border-primary-500"
+                      className="field"
                     />
                   </label>
                   <label className="block">
@@ -260,7 +263,7 @@ export default function SkinAnalysisSection() {
                       autoComplete="email"
                       value={email}
                       onChange={(event) => setEmail(event.target.value)}
-                      className="mt-1 w-full rounded-xl border border-neutral-200 px-4 py-3 text-neutral-800 outline-none focus:border-primary-500"
+                      className="field"
                     />
                   </label>
                   <label className="block">
@@ -272,7 +275,7 @@ export default function SkinAnalysisSection() {
                       autoComplete="tel"
                       value={phone}
                       onChange={(event) => setPhone(event.target.value)}
-                      className="mt-1 w-full rounded-xl border border-neutral-200 px-4 py-3 text-neutral-800 outline-none focus:border-primary-500"
+                      className="field"
                     />
                   </label>
                   <label className="block sm:col-span-2">
@@ -283,7 +286,7 @@ export default function SkinAnalysisSection() {
                       maxLength={500}
                       value={goals}
                       onChange={(event) => setGoals(event.target.value)}
-                      className="mt-1 w-full rounded-xl border border-neutral-200 px-4 py-3 text-neutral-800 outline-none focus:border-primary-500"
+                      className="field"
                     />
                   </label>
                 </div>
@@ -297,12 +300,12 @@ export default function SkinAnalysisSection() {
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full inline-flex items-center justify-center bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-full font-semibold text-base hover:shadow-xl transition-all duration-300 hover:scale-105 min-h-[48px] disabled:opacity-70 disabled:hover:scale-100"
+                  className="btn-primary w-full disabled:opacity-70"
                 >
                   {status === 'submitting' ? 'Sending your photo…' : 'Upload my photo'}
                 </button>
                 <p className="text-xs text-neutral-500 leading-relaxed">
-                  Your photo is reviewed by the Clarity Cosmetics team and used only to guide your treatment options. This is a free online review, separate from the in-clinic consultation.
+                  Your photo is reviewed by the Clarity Cosmetics team and used only to guide your treatment options. This is a free online review, separate from the in‑clinic&nbsp;consultation.
                 </p>
               </form>
             )}

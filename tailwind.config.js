@@ -56,6 +56,13 @@ module.exports = {
           800: '#6d5a46',
           900: '#5d4a36',
         },
+        cream: {
+          50: '#fcfbf8',
+          100: '#f8f5ef',
+          200: '#efe9df',
+          300: '#e2d9ca',
+        },
+        ink: '#1f2723',
         neutral: {
           50: '#f8f8f8',
           100: '#f5f3f5',
@@ -70,8 +77,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        'display': ['Montserrat', 'sans-serif'],
-        'sans': ['Open Sans', 'system-ui', 'sans-serif'],
+        'display': ['var(--font-display)', 'Georgia', 'serif'],
+        'sans': ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { ArrowRight } from 'lucide-react'
 import Navigation from '@/components/Navigation'
 import PremiumHero from '@/components/PremiumHero'
 import TrustIconsTicker from '@/components/TrustIconsTicker'
@@ -20,6 +21,24 @@ export default function PageWrapper() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
   const [isModelDayBooking, setIsModelDayBooking] = useState(false)
   const [assessmentData, setAssessmentData] = useState<any>(null)
+  const [showFloatingCta, setShowFloatingCta] = useState(false)
+
+  // Floating "Book Now" only appears once the visitor has scrolled past the hero,
+  // so it never covers the hero's own CTAs or the "Watch Claire" pill.
+  useEffect(() => {
+    const onScroll = () => {
+      const hero = document.getElementById('hero')
+      const threshold = hero ? hero.offsetTop + hero.offsetHeight - 80 : 600
+      setShowFloatingCta(window.scrollY > threshold)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [])
 
   const handleBookingClick = (isModelDay = false) => {
     setIsModelDayBooking(isModelDay)
@@ -58,12 +77,14 @@ export default function PageWrapper() {
       {/* Floating Book Now Button */}
       <button
         onClick={() => handleBookingClick(false)}
-        className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3 rounded-full font-medium shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 flex items-center group"
+        aria-hidden={!showFloatingCta}
+        tabIndex={showFloatingCta ? 0 : -1}
+        className={`btn-primary fixed bottom-4 left-1/2 -translate-x-1/2 sm:bottom-6 sm:left-6 sm:translate-x-0 z-40 !min-h-0 !py-2.5 !px-5 !text-[14px] shadow-[0_6px_20px_-6px_rgba(31,39,35,0.35)] transition-[opacity,transform] duration-300 ${
+          showFloatingCta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 pointer-events-none'
+        }`}
       >
-        <span className="mr-2">Book Now</span>
-        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-        </svg>
+        Book Now
+        <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
       </button>
     </>
   )

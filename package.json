@@ -8,11 +8,18 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "keywords": ["morpheus8", "rf-microneedling", "clarity-cosmetics", "bedford", "aesthetics"],
+  "keywords": [
+    "morpheus8",
+    "rf-microneedling",
+    "clarity-cosmetics",
+    "bedford",
+    "aesthetics"
+  ],
   "author": "Clarity Clinic",
   "license": "ISC",
   "description": "Morpheus8 RF Microneedling landing page for Clarity Clinic - Nurse-led aesthetic clinic in Bedford",
   "dependencies": {
+    "lucide-react": "^1.48.0",
     "next": "^15.5.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
