@@ -9,6 +9,12 @@ CO2 laser treatment landing page built with Next.js 15, TypeScript, and Tailwind
 - **Styling:** Tailwind CSS
 - **Deployment:** Vercel
 
+## Media
+
+Clinic photos, page videos, and Claire’s Follow Up Systems videos are already in the same Cloudinary account: `ddxptienb` (`https://res.cloudinary.com/ddxptienb`).
+
+Follow Up Systems videos are stored under `follow-up-videos/`. New Morpheus8 and Alma page media goes in this account, not FileSafe or Google Cloud Storage.
+
 ## Development Commands
 ```bash
 npm install        # Install dependencies
