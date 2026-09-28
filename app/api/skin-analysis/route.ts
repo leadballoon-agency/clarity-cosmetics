@@ -7,6 +7,13 @@ import { NextResponse } from 'next/server'
 const MAX_PHOTO_BYTES = 2 * 1024 * 1024
 const FOLDER = 'clarity-cosmetics/morpheus8/skin-analysis'
 
+// Follow Up Systems: every request becomes a lead there. Claire is emailed at
+// once (with the photo link) and the lead starts her skin-analysis follow-up.
+// The key and project are the same public values as the widget embed.
+const FUS_WEBHOOK = 'https://followupsystems.co.uk/api/leads/webhook'
+const FUS_KEY = process.env.FUS_WIDGET_KEY || '35e952215fb8e9a5efe2c565cc8cd8d7'
+const FUS_PROJECT = process.env.FUS_PROJECT_ID || '8e48c1b0-f88a-454a-8716-8d8f321a6dc8'
+
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254
 }
@@ -84,7 +91,40 @@ async function uploadToCloudinary(photo: string, context: string, publicId: stri
   }
 
   const result = await response.json()
-  return typeof result.public_id === 'string' ? result.public_id : publicId
+  return {
+    publicId: typeof result.public_id === 'string' ? result.public_id : publicId,
+    // Authenticated uploads come back with a signed link, so only someone
+    // holding it can open the photo.
+    url: typeof result.secure_url === 'string' ? result.secure_url : null,
+  }
+}
+
+async function sendToFollowUp(lead: { name: string; email: string; phone: string; goals: string; photoUrl: string | null }) {
+  const notes = [
+    lead.photoUrl
+      ? `Free skin analysis photo: ${lead.photoUrl}`
+      : 'Free skin analysis: the photo could not be saved. Ask them to send it again.',
+    lead.goals ? `What they'd like to improve: ${lead.goals}` : '',
+  ].filter(Boolean).join('\n')
+  try {
+    const res = await fetch(FUS_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        key: FUS_KEY,
+        projectId: FUS_PROJECT,
+        name: lead.name,
+        email: lead.email,
+        phone: lead.phone,
+        source: 'skin-analysis',
+        sourceDetail: 'Free skin analysis (photo upload)',
+        notes,
+      }),
+    })
+    if (!res.ok) console.error('Follow Up Systems lead failed:', res.status, (await res.text()).slice(0, 200))
+  } catch (error) {
+    console.error('Follow Up Systems lead failed:', error instanceof Error ? error.message : error)
+  }
 }
 
 export async function POST(request: Request) {
@@ -139,10 +179,12 @@ export async function POST(request: Request) {
     ].filter(Boolean).join('|')
 
     let storedId = publicId
-    const uploadedId = await uploadToCloudinary(photo, context, publicId)
+    const uploaded = await uploadToCloudinary(photo, context, publicId)
+    const lead = { name: sanitizedName, email: sanitizedEmail, phone: sanitizedPhone, goals: sanitizedGoals }
 
-    if (uploadedId) {
-      storedId = uploadedId
+    if (uploaded) {
+      storedId = uploaded.publicId
+      await sendToFollowUp({ ...lead, photoUrl: uploaded.url })
     } else if (process.env.NODE_ENV === 'development') {
       const dir = path.join(tmpdir(), 'clarity-skin-analysis')
       await mkdir(dir, { recursive: true })
@@ -153,6 +195,8 @@ export async function POST(request: Request) {
       )
     } else {
       console.error('Skin analysis photo was not stored. Set CLOUDINARY_URL on the server.')
+      // Still pass the person on, so Claire can ask for the photo again.
+      await sendToFollowUp({ ...lead, photoUrl: null })
       return NextResponse.json(
         { error: 'We could not save your photo just now. Please try again shortly, or call the clinic.' },
         { status: 503 }
