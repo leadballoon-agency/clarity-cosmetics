@@ -20,6 +20,11 @@ const theme = {
   '--fus-accent': '#588068',
   '--fus-accent-text': '#42604a',
   '--fus-shadow': '0 2px 12px rgba(31, 39, 35, 0.06)',
+  '--fus-radius': '12px',
+  '--fus-question-font': 'var(--font-display), Georgia, "Times New Roman", serif',
+  '--fus-question-weight': '400',
+  '--fus-button-case': 'none',
+  '--fus-button-tracking': '0.01em',
 } as CSSProperties
 
 export default function FusAssessment() {
