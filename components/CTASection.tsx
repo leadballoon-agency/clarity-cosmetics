@@ -18,9 +18,10 @@ export default function CTASection({ onBookingClick }: CTASectionProps) {
           <span className="font-medium text-sm">Book Your Consultation</span>
         </div>
 
-        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-          Ready to Transform
-          <span className="block mt-1 sm:mt-2">Your Skin with Morpheus8?</span>
+        <h2 className="font-display text-[1.6rem] leading-[1.25] sm:text-4xl lg:text-5xl font-bold mb-5 sm:mb-6">
+          <span className="block">Ready to Transform</span>
+          <span className="block mt-1">Your Skin</span>
+          <span className="block mt-1">with Morpheus8?</span>
         </h2>
 
         <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-12 max-w-2xl mx-auto text-white/90 px-4 leading-relaxed">

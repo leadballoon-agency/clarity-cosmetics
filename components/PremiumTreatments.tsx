@@ -36,11 +36,11 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
   return (
     <section id="treatments" className="py-16 sm:py-20 md:py-28 bg-gradient-to-b from-primary-50 to-white">
       <div className="max-w-7xl mx-auto section-padding">
-        <div className="text-center mb-8 sm:mb-12 lg:mb-16 space-y-2 sm:space-y-4">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16 space-y-4 sm:space-y-5">
           <span className="text-primary-600 font-medium tracking-wider uppercase text-sm">Morpheus8 Treatments</span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold">
-            Transform Your Skin with
-            <span className="gradient-text"> RF Microneedling</span>
+          <h2 className="font-display text-[1.6rem] leading-[1.25] sm:text-4xl lg:text-5xl font-bold">
+            <span className="block">Transform Your Skin</span>
+            <span className="block gradient-text mt-1">with RF Microneedling</span>
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-neutral-600 max-w-2xl mx-auto px-4 leading-relaxed">
             FDA-cleared RF microneedling for face, neck and body. Face, Neck & Décolleté is £600. Course of 3 for £1,650.

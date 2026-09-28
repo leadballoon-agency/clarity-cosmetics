@@ -42,9 +42,10 @@ export default function PremiumHero({ onBookingClick }: PremiumHeroProps) {
             </div>
 
             {/* Main Heading */}
-            <h1 className="font-display text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.15] sm:leading-[1.1]">
-              Lift Your Face, Neck & Décolleté
-              <span className="block gradient-text mt-1">Without a Scalpel</span>
+            <h1 className="font-display text-[2rem] leading-[1.22] sm:text-4xl lg:text-[2.35rem] xl:text-5xl font-bold">
+              <span className="block">Lift Your Face,</span>
+              <span className="block">Neck & Décolleté</span>
+              <span className="block gradient-text mt-3">Without a Scalpel</span>
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-neutral-600 leading-relaxed max-w-xl mx-auto lg:mx-0">

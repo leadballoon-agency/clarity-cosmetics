@@ -126,11 +126,12 @@ export default function SkinAnalysisSection() {
                 <span className="w-2 h-2 bg-primary-500 rounded-full animate-pulse mr-2"></span>
                 <span className="text-primary-700 font-medium text-sm">Free online skin analysis</span>
               </div>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-                Discover what your skin
-                <span className="block gradient-text">really needs</span>
+              <h2 className="font-display text-[1.6rem] leading-[1.25] sm:text-4xl lg:text-5xl font-bold">
+                <span className="block">Discover what</span>
+                <span className="block">your skin</span>
+                <span className="block gradient-text mt-1">really needs</span>
               </h2>
-              <p className="text-base sm:text-lg text-neutral-700 font-medium mt-4">
+              <p className="text-base sm:text-lg text-neutral-700 font-medium mt-5 leading-relaxed">
                 Not sure which treatment would be most suitable for your skin?
               </p>
               <p className="text-sm sm:text-base text-neutral-600 leading-relaxed mt-3">

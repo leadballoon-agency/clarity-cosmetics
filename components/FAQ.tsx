@@ -41,9 +41,9 @@ export default function FAQ({ onBookingClick }: FAQProps) {
       <div className="max-w-4xl mx-auto section-padding">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <span className="text-sage-600 font-medium tracking-wider uppercase text-sm">Frequently Asked Questions</span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-2 sm:mt-4">
+          <h2 className="font-display text-[1.6rem] leading-[1.25] sm:text-4xl lg:text-5xl font-bold mt-3 sm:mt-4">
             Your Questions
-            <span className="block gradient-text">Answered</span>
+            <span className="block gradient-text mt-1">Answered</span>
           </h2>
         </div>
 

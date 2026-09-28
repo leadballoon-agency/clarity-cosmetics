@@ -73,6 +73,12 @@ module.exports = {
         'display': ['Montserrat', 'sans-serif'],
         'sans': ['Open Sans', 'system-ui', 'sans-serif'],
       },
+      fontSize: {
+        '4xl': ['2.25rem', { lineHeight: '1.2' }],
+        '5xl': ['3rem', { lineHeight: '1.18' }],
+        '6xl': ['3.75rem', { lineHeight: '1.15' }],
+        '7xl': ['4.5rem', { lineHeight: '1.12' }],
+      },
       animation: {
         'float': 'float 6s ease-in-out infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',

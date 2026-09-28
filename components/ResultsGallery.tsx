@@ -67,11 +67,11 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
       <div className="max-w-7xl mx-auto section-padding">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <span className="text-primary-600 font-medium tracking-wider uppercase text-sm">Real Results</span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-2 sm:mt-4">
-            Transformations That
-            <span className="block gradient-text">Speak For Themselves</span>
+          <h2 className="font-display text-[1.6rem] leading-[1.25] sm:text-4xl lg:text-5xl font-bold mt-3 sm:mt-4">
+            <span className="block">Transformations That</span>
+            <span className="block gradient-text mt-1">Speak For Themselves</span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-neutral-600 mt-2 sm:mt-4 max-w-2xl mx-auto px-4 leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-lg text-neutral-600 mt-4 sm:mt-5 max-w-2xl mx-auto px-4 leading-relaxed">
             Side-by-side before and after results from real Morpheus8 treatments
           </p>
         </div>
